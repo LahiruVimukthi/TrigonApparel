@@ -11,88 +11,70 @@ namespace TrigonApparel
 {
 
 
-    public partial class WebForm5
+    public partial class WebForm6
     {
 
         /// <summary>
-        /// ScriptManagerAtt control.
+        /// GridViewLeaveReq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManagerAtt;
+        protected global::System.Web.UI.WebControls.GridView GridViewLeaveReq;
 
         /// <summary>
-        /// DropDownListAtJob control.
+        /// TextBoxLeaveEmpID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListAtJob;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxLeaveEmpID;
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// TextBoxLeaveDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxLeaveDate;
 
         /// <summary>
-        /// GridViewAttDep control.
+        /// TextBoxLeaveDes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewAttDep;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxLeaveDes;
 
         /// <summary>
-        /// TextBoxAttEmpID control.
+        /// CheckBoxLeaveReq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttEmpID;
+        protected global::System.Web.UI.WebControls.CheckBox CheckBoxLeaveReq;
 
         /// <summary>
-        /// TextBoxAttEmpName control.
+        /// ButtonSubmitLeavReq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttEmpName;
+        protected global::System.Web.UI.WebControls.Button ButtonSubmitLeavReq;
 
         /// <summary>
-        /// TextBoxAttDate control.
+        /// CalendarLeaveReq control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttDate;
-
-        /// <summary>
-        /// CalendarextenderAttDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarextenderAttDate;
-
-        /// <summary>
-        /// ButtonAddAtt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAddAtt;
+        protected global::System.Web.UI.WebControls.Calendar CalendarLeaveReq;
     }
 }

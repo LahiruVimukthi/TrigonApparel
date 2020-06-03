@@ -1689,6 +1689,7 @@
     <Content Include="UserRegistration.aspx" />
     <Content Include="AttendanceHome.aspx" />
     <Content Include="AttendanceMark.aspx" />
+    <Content Include="WebForm6.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1733,6 +1734,13 @@
     </Compile>
     <Compile Include="AttendanceMark.aspx.designer.cs">
       <DependentUpon>AttendanceMark.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WebForm6.aspx.cs">
+      <DependentUpon>WebForm6.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WebForm6.aspx.designer.cs">
+      <DependentUpon>WebForm6.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
