@@ -79,7 +79,6 @@
     <Content Include="Bootstrap\JS\bootstrap.min.js" />
     <Content Include="Bootstrap\JS\jquery-3.3.1.slim.min.js" />
     <Content Include="Bootstrap\JS\popper.min.js" />
-    <Content Include="CustomStyle.css" />
     <Content Include="CustomStyleSheet.css" />
     <Content Include="Datatables\Css.txt" />
     <Content Include="Datatables\css\Css.css" />
@@ -1689,7 +1688,8 @@
     <Content Include="UserRegistration.aspx" />
     <Content Include="AttendanceHome.aspx" />
     <Content Include="AttendanceMark.aspx" />
-    <Content Include="WebForm6.aspx" />
+    <Content Include="LeaveRequests.aspx" />
+    <Content Include="LeaveApproval.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1735,12 +1735,19 @@
     <Compile Include="AttendanceMark.aspx.designer.cs">
       <DependentUpon>AttendanceMark.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm6.aspx.cs">
-      <DependentUpon>WebForm6.aspx</DependentUpon>
+    <Compile Include="LeaveRequests.aspx.cs">
+      <DependentUpon>LeaveRequests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm6.aspx.designer.cs">
-      <DependentUpon>WebForm6.aspx</DependentUpon>
+    <Compile Include="LeaveRequests.aspx.designer.cs">
+      <DependentUpon>LeaveRequests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveApproval.aspx.cs">
+      <DependentUpon>LeaveApproval.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveApproval.aspx.designer.cs">
+      <DependentUpon>LeaveApproval.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

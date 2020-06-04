@@ -27,6 +27,10 @@ namespace TrigonApparel
         {
             submitRequest();
             SubmitLeaveGrid();
+            TextBoxLeaveDate.Text = "";
+            TextBoxLeaveDes.Text = "";
+            TextBoxLeaveEmpID.Text = "";
+            CheckBoxLeaveReq.Checked = false;
         }
         void submitRequest()
         {
