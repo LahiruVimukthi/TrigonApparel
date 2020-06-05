@@ -42,6 +42,15 @@ namespace TrigonApparel
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
+        /// TextBoxAttDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxAttDate;
+
+        /// <summary>
         /// GridViewAttDep control.
         /// </summary>
         /// <remarks>
@@ -69,22 +78,22 @@ namespace TrigonApparel
         protected global::System.Web.UI.WebControls.TextBox TextBoxAttEmpName;
 
         /// <summary>
-        /// TextBoxAttDate control.
+        /// DropDownListAttStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttDate;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListAttStatus;
 
         /// <summary>
-        /// CalendarextenderAttDate control.
+        /// TextBoxAttDateTime control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CalendarExtender CalendarextenderAttDate;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxAttDateTime;
 
         /// <summary>
         /// ButtonAddAtt control.

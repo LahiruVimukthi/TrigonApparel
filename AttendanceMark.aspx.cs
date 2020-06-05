@@ -21,10 +21,12 @@ namespace TrigonApparel
 
         protected void DropDownListAttJob_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
             try
             {
+               
                 SqlConnection con = new SqlConnection(strcon);
-                string squery = "Select F_Name, Employee_ID from dbo.[User_Registrations] JOIN dbo.[Department] ON Department.Dep_ID= User_Registrations.Dep_ID Where Department.Dep_ID= '" + DropDownListAtJob.SelectedItem.Value + "'";
+                string squery = "Select F_Name, [User_Registrations].Employee_ID from dbo.[User_Registrations] JOIN dbo.[Department] ON Department.Dep_ID= User_Registrations.Dep_ID  Where Department.Dep_ID= '" + DropDownListAtJob.SelectedItem.Value + "'";
                 if (con.State == ConnectionState.Closed)
                 {
                     con.Open();
@@ -63,5 +65,55 @@ namespace TrigonApparel
         {
 
         }
+
+        protected void GridViewAttDep_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void CheckBoxSelectAtt_CheckedChanged(object sender, EventArgs e)
+        {
+
+            int rowind = ((GridViewRow)(sender as Control).NamingContainer).RowIndex;
+            TextBoxAttEmpID.Text = GridViewAttDep.Rows[rowind].Cells[2].Text;
+            TextBoxAttEmpName.Text = GridViewAttDep.Rows[rowind].Cells[1].Text;
+
+          
+            
+        }
+
+        protected void ButtonAddAtt_Click(object sender, EventArgs e)
+        {
+           try
+            {
+
+                string squery = " INSERT INTO [dbo].[Attendance] (Employee_ID,At_Date,Att_Time, Att_Status) VALUES (@Employee_ID,@At_Date,@Att_Time, @Att_Status)";
+                SqlConnection con = new SqlConnection(strcon);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                SqlCommand cmd = new SqlCommand(squery, con);
+                cmd.Parameters.AddWithValue("@Employee_ID", TextBoxAttEmpID.Text.Trim());
+                cmd.Parameters.AddWithValue("@At_Date", TextBoxAttDate.Text.ToString());
+                cmd.Parameters.AddWithValue("@Att_Time", TextBoxAttDateTime.Text.Trim());
+                cmd.Parameters.AddWithValue("@Att_Status", DropDownListAttStatus.SelectedItem.Text.Trim());
+
+                cmd.ExecuteNonQuery();
+                con.Close();
+                TextBoxAttEmpID.Text = "";
+                TextBoxAttDate.Text = "";
+
+
+
+                Response.Write("<script>alert('Attendance Marked');</script>");
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+
+       
     }
 }

@@ -78,5 +78,9 @@ namespace TrigonApparel
         {
 
         }
+        void GenearteAutoID()
+        {
+            
+        }
     }
 }

@@ -19,7 +19,7 @@
     <%--bootstrap js--%>
     <script src="Bootstrap/JS/bootstrap.min.js"></script>
     <%--custom style sheet--%>
-    <link href="CustomStyle.css" rel="stylesheet" />
+    <link href="CustomStyleSheet.css" rel="stylesheet" />
       <%--datatables jqeury--%>                
     <script src="Datatables/jquery/jquery.dataTables.min.js"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -74,15 +74,15 @@
             </nav>
         <div class="row">
             <div class="col-lg-2">
-                <nav class="nav flex-column navbar-dark bg-dark" id="navbarVertical">
-                    <asp:LinkButton ID="LinkButtonEmployees" runat="server">Employees</asp:LinkButton>
-                    <asp:LinkButton ID="LinkButtonAttendance" runat="server">Attendance</asp:LinkButton>
-                    <asp:LinkButton ID="LinkButtonPerformance" runat="server">Performance</asp:LinkButton>
-                    <asp:LinkButton ID="LinkButtonFeedback" runat="server">Feedbacks</asp:LinkButton>
-                    <asp:LinkButton ID="LinkButtonAssets" runat="server">Assets</asp:LinkButton>
-                    <asp:LinkButton ID="LinkButtonAnnouncements" runat="server">Announcements</asp:LinkButton>
-                    <asp:LinkButton ID="LinkButtonreports" runat="server">Reports</asp:LinkButton>
-                </nav>
+                <div class="sidenav">
+                    <asp:LinkButton ID="LinkButtonEmployees" runat="server">Employees</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButtonAttendance" runat="server">Attendance</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButtonPerformance" runat="server">Performance</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButtonFeedback" runat="server">Feedbacks</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButtonAssets" runat="server">Assets</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButtonAnnouncements" runat="server">Announcements</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButtonreports" runat="server">Reports</asp:LinkButton><br />
+                </div>               
             </div>            
             <div class="col-lg-10">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">

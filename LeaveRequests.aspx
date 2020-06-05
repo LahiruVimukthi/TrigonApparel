@@ -72,7 +72,7 @@
                             
                             </div>
                         <div class="col-lg-3">
-                            <asp:Calendar ID="CalendarLeaveReq" runat="server" OnSelectionChanged="CalendarLeaveReq_SelectionChanged" Width="365px" SelectionMode="DayWeek"></asp:Calendar>
+                            <asp:Calendar ID="CalendarLeaveReq" runat="server" OnSelectionChanged="CalendarLeaveReq_SelectionChanged" Width="207px" SelectionMode="DayWeek" Height="200px"></asp:Calendar>
                         </div>
                         </div>
                         </div>
