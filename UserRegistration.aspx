@@ -36,6 +36,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
+                  
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="email">First Name:</label>
@@ -111,13 +112,13 @@
             <asp:GridView class="table table-striped table-bordered" ID="GridViewAddEmployees" runat="server" AutoGenerateColumns="False" DataKeyNames="Employee_ID" DataSourceID="SqlDataSource3" CellPadding="4" Font-Size="Small" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:BoundField DataField="F_Name" HeaderText="F_Name" SortExpression="F_Name" />
-                    <asp:BoundField DataField="Phn_Number" HeaderText="Phn_Number" SortExpression="Phn_Number" />
-                    <asp:BoundField DataField="NIC_Number" HeaderText="NIC_Number" SortExpression="NIC_Number" />
-                    <asp:BoundField DataField="Employee_ID" HeaderText="Employee_ID" InsertVisible="False" ReadOnly="True" SortExpression="Employee_ID" />
+                    <asp:BoundField DataField="F_Name" HeaderText="First Name" SortExpression="F_Name" />
+                    <asp:BoundField DataField="Phn_Number" HeaderText="Phone Number" SortExpression="Phn_Number" />
+                    <asp:BoundField DataField="NIC_Number" HeaderText="NIC Number" SortExpression="NIC_Number" />
+                    <asp:BoundField DataField="Employee_ID" HeaderText="Employee ID" InsertVisible="False" ReadOnly="True" SortExpression="Employee_ID" />
                     <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
                     <asp:BoundField DataField="Supervisor" HeaderText="Supervisor" SortExpression="Supervisor" />
-                    <asp:BoundField DataField="Department_Name" HeaderText="Department_Name" SortExpression="Department_Name" />
+                    <asp:BoundField DataField="Department_Name" HeaderText="Department Name" SortExpression="Department_Name" />
                 </Columns>
                 <EditRowStyle BackColor="#999999" />
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

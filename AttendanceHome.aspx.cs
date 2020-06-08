@@ -16,17 +16,17 @@ namespace TrigonApparel
 
         protected void ButtonMarkAttendance_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("AttendanceMark.aspx");
         }
 
         protected void ButtonViewAttendance_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void ButtonLeaveRequests_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("LeaveApproval.aspx");
         }
     }
 }

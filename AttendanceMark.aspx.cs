@@ -15,8 +15,10 @@ namespace TrigonApparel
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-
+            if (!IsPostBack)
+            {
+                GridViewAttendanceToFrom.DataBind();
+            }
         }
 
         protected void DropDownListAttJob_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,36 +86,113 @@ namespace TrigonApparel
 
         protected void ButtonAddAtt_Click(object sender, EventArgs e)
         {
-           try
+            if (DropDownListAttStatus.SelectedItem.Value == "1")
+            {
+                try
+                {
+
+
+                    string squery = " INSERT INTO [dbo].[Attendance] (Employee_ID,At_Date,Att_Time, CheckIn) VALUES (@Employee_ID,@At_Date,@Att_Time, @CheckIn)";
+                    SqlConnection con = new SqlConnection(strcon);
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        con.Open();
+                    }
+                    SqlCommand cmd = new SqlCommand(squery, con);
+                    cmd.Parameters.AddWithValue("@Employee_ID", TextBoxAttEmpID.Text.Trim());
+                    cmd.Parameters.AddWithValue("@At_Date", TextBoxAttDate.Text.ToString());
+                    cmd.Parameters.AddWithValue("@Att_Time", TextBoxAttDateTime.Text.Trim());
+                    cmd.Parameters.AddWithValue("@CheckIn", DropDownListAttStatus.SelectedItem.Text.Trim());
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    TextBoxAttEmpID.Text = "";
+                    TextBoxAttEmpName.Text = "";
+
+
+
+                    Response.Write("<script>alert('Attendance Marked');</script>");
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>alert('" + ex.Message + "');</script>");
+                }
+
+            }
+
+            else if (DropDownListAttStatus.SelectedItem.Value=="2")
+            {
+                try
+                {
+
+
+                    string squery = " INSERT INTO [dbo].[Attendance] (Employee_ID,At_Date,Att_Time, CheckOut) VALUES (@Employee_ID,@At_Date,@Att_Time, @CheckOut)";
+                    SqlConnection con = new SqlConnection(strcon);
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        con.Open();
+                    }
+                    SqlCommand cmd = new SqlCommand(squery, con);
+                    cmd.Parameters.AddWithValue("@Employee_ID", TextBoxAttEmpID.Text.Trim());
+                    cmd.Parameters.AddWithValue("@At_Date", TextBoxAttDate.Text.ToString());
+                    cmd.Parameters.AddWithValue("@Att_Time", TextBoxAttDateTime.Text.Trim());
+                    cmd.Parameters.AddWithValue("@CheckOut", DropDownListAttStatus.SelectedItem.Text.Trim());
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    TextBoxAttEmpID.Text = "";
+                    TextBoxAttDate.Text = "";
+
+
+
+                    Response.Write("<script>alert('Attendance Marked');</script>");
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("<script>alert('" + ex.Message + "');</script>");
+                }
+            }
+            
+        }
+
+        protected void ButtonLeavesLoad_Click1(object sender, EventArgs e)
+        {
+            try
             {
 
-                string squery = " INSERT INTO [dbo].[Attendance] (Employee_ID,At_Date,Att_Time, Att_Status) VALUES (@Employee_ID,@At_Date,@Att_Time, @Att_Status)";
                 SqlConnection con = new SqlConnection(strcon);
+                string squery = "SELECT Attendance.Employee_ID, User_Registrations.F_Name from dbo.[Attendance] JOIN dbo.[User_Registrations] ON Attendance.Employee_ID= User_Registrations.Employee_ID JOIN dbo.[Department] ON User_Registrations.Dep_ID=Department.Dep_ID  Where Department.Dep_ID='" + DropDownListAttByDep.SelectedItem.Value + "' AND Attendance.At_Date='" + TextBoxDate.Text + "'";
                 if (con.State == ConnectionState.Closed)
                 {
                     con.Open();
+
                 }
+
                 SqlCommand cmd = new SqlCommand(squery, con);
-                cmd.Parameters.AddWithValue("@Employee_ID", TextBoxAttEmpID.Text.Trim());
-                cmd.Parameters.AddWithValue("@At_Date", TextBoxAttDate.Text.ToString());
-                cmd.Parameters.AddWithValue("@Att_Time", TextBoxAttDateTime.Text.Trim());
-                cmd.Parameters.AddWithValue("@Att_Status", DropDownListAttStatus.SelectedItem.Text.Trim());
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
 
-                cmd.ExecuteNonQuery();
+                GridViewAttendanceToFrom.DataSource = dt;
+                GridViewAttendanceToFrom.DataBind();
+
+
                 con.Close();
-                TextBoxAttEmpID.Text = "";
-                TextBoxAttDate.Text = "";
 
 
 
-                Response.Write("<script>alert('Attendance Marked');</script>");
+
             }
             catch (Exception ex)
             {
-                Response.Write("<script>alert('" + ex.Message + "');</script>");
+                Response.Write("< script >alert ('" + ex.Message + "');</ Script >");
+
             }
         }
 
-       
+        protected void GridViewAttToFrom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

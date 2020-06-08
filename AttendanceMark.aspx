@@ -19,25 +19,9 @@
     <br />
     <div class="container">
         <div class="row">
-            <div class="col-lg-2">
-                <div class="row">
-                    <div class="Form-Group form-inline">
-                    <label for="Select Department">Select Department:</label>
-                    <asp:DropDownList ID="DropDownListAtJob" runat="server" OnSelectedIndexChanged="DropDownListAttJob_SelectedIndexChanged" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Dep_Name" DataValueField="Dep_ID">
-                    </asp:DropDownList>                   
-                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT [Dep_ID], [Dep_Name] FROM [Department]"></asp:SqlDataSource>               
-                </div>
-                    <div class="row">
-                        <div class="form-group ">
-                         <label for="AttDate">Date:</label>
-                        <asp:TextBox ID="TextBoxAttDate" runat="server" TextMode="Date"></asp:TextBox>
-                           
-                    </div>
-                    </div>
-                    </div>
-            </div>
+           
              <div class="col-lg-6">
-            <div class="card">
+            <div class="card bg-light mb-3">
                 <div class="card-header">
                     Employee List
                 </div>
@@ -66,11 +50,27 @@
             </div>
             </div>            
              <div class="col-lg-4">
-            <div class="card">
+            <div class="card bg-light mb-3">
                 <div class="card-header">
                     Mark Attendnce
                 </div>
                 <div class="card-body">
+                    <div class="row">
+                    <div class="form-group form-inline">
+                    <label for="Select Department">Select Department:</label>
+                    <asp:DropDownList ID="DropDownListAtJob" runat="server" OnSelectedIndexChanged="DropDownListAttJob_SelectedIndexChanged" AutoPostBack="True" DataSourceID="SqlDataSource1" DataTextField="Dep_Name" DataValueField="Dep_ID">
+                    </asp:DropDownList>                   
+                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT [Dep_ID], [Dep_Name] FROM [Department]"></asp:SqlDataSource>               
+                </div>
+
+                   
+                        <div class="form-group form-inline">
+                         <label for="AttDate">Date:</label>
+                        <asp:TextBox ID="TextBoxAttDate" runat="server" TextMode="Date"></asp:TextBox>
+                           
+                    </div>
+                    </div>
+                  
                     <div class="row">
                     <div class="form-group form-inline">
                          <label for="Employee_ID">Employee ID:</label>
@@ -82,10 +82,12 @@
                     </div>
                      <div class="form-group form-inline">
                          <label for="Req_Status">Status:</label>
-                         <asp:DropDownList ID="DropDownListAttStatus" runat="server">
-                             <asp:ListItem>CheckIn</asp:ListItem>
-                             <asp:ListItem>CheckOut</asp:ListItem>
+                         <asp:DropDownList ID="DropDownListAttStatus" runat="server" DataSourceID="SqlDataSource4" DataTextField="CheckStatus" DataValueField="CheckID">
+                             
                          </asp:DropDownList>
+                         
+                         <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT [CheckID], [CheckStatus] FROM [CheckInOut]"></asp:SqlDataSource>
+                         
                          
                     </div>
                         <div class="form-group form-inline">
@@ -96,11 +98,72 @@
                    
                     <asp:Button ID="ButtonAddAtt" runat="server" Text="Submit" OnClick="ButtonAddAtt_Click" />
                 </div>
+                </div>
             </div> 
                 </div>
            
                 
         </div>         
       </div> 
+    <hr />
+         <div class="row">
+    <div class="col-lg-12">
+            <div class="card bg-light mb-3">
+                <div class="card-header">View Attendance Records</div>
+                <div class="card-body">
+                    <div class="row">
+                        
+                         <div class="col-lg-3">
+                            <div class="form-inline">
+                                <label for="Department">Select Department: </label>
+                                <asp:DropDownList ID="DropDownListAttByDep" runat="server" DataSourceID="SqlDataSource2" DataTextField="Dep_Name" DataValueField="Dep_ID"></asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT [Dep_ID], [Dep_Name] FROM [Department]"></asp:SqlDataSource>
+                            </div>
+                            
+                        </div>          
+                             <div class="col-lg-3">
+                           <div class="form-inline">
+                                <asp:Label ID="LabelAttDate" runat="server" Text="From: "></asp:Label>
+                               <asp:TextBox ID="TextBoxDate" runat="server" TextMode="Date"></asp:TextBox>
+                           </div>
+                        </div>
+                        
+                       
+                     
+                       <div class="col-lg-3">
+                           <asp:Button ID="ButtonAttLoad" runat="server" Text="Load" TextMode="Date" OnClick="ButtonLeavesLoad_Click1"  AutoPostback="False"/>
+                       </div>   
+                           
+                        </div>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <asp:GridView ID="GridViewAttendanceToFrom" runat="server" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px" CellPadding="3">
+                                <Columns>
+                                    <asp:BoundField DataField="Employee_ID" HeaderText="Employee ID" />
+                                    <asp:BoundField DataField="F_Name" HeaderText="Name" />
+                                </Columns>
+
+                                <EditRowStyle BorderStyle="Dashed" />
+                                <FooterStyle BackColor="White" ForeColor="#000066" />
+                                <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
+                                <RowStyle ForeColor="#000066" />
+                                <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
+                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                <SortedAscendingHeaderStyle BackColor="#007DBB" />
+                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                <SortedDescendingHeaderStyle BackColor="#00547E" />
+
+                            </asp:GridView>
+                        </div>
+                    </div>
+                    </div>
+                  <br />
+                  
+                    
+                </div>
+            </div>
+        </div>
+       
  
 </asp:Content>

@@ -15,7 +15,10 @@ namespace TrigonApparel
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+            if (IsPostBack)
+            {
+                GridViewLeaveReq.DataBind();
+            }
         }
 
         protected void CalendarLeaveReq_SelectionChanged(object sender, EventArgs e)
