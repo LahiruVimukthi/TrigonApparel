@@ -49,10 +49,49 @@
                 </div>
                 <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#003366"></asp:Label>
                 <div class="card-footer">
-                    <center>
-                    <asp:Button ID="ButtonApproveLeaves" runat="server" Text="Approve" OnClick="ButtonApproveLeaves_Click" />
-                        </center>
-                </div>
+                    <div class="form-group">
+                        <asp:Button ID="ButtonApproveLeaves" runat="server" Text="Approve" OnClick="ButtonApproveLeaves_Click" />
+                        <asp:Button ID="ButtonDeclineLeaves" runat="server" Text="Decline" OnClick="ButtonDeclineLeaves_Click" />
+                    </div>
+                     </div>
+                    <asp:ScriptManager ID="ScriptManagerDecline" runat="server"></asp:ScriptManager>
+                    <div class="row">
+                        <div class="col-lg-6">
+                              <asp:Panel ID="pnModelPopup" runat="server" CssClass="popup">
+                        <div class="card">
+                            <div class="card-header">Enter Decline Criteria</div>
+                            <div class="card-body">
+                             
+                                 <div class="row">
+                                     <div class="form-inline">
+                                     <asp:Label ID="LabelDeclineReason" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#003366"></asp:Label>
+                                       
+                                     <asp:DropDownList ID="DropDownListDeclineReason" runat="server" DataSourceID="SqlDataSource2" DataTextField="Dec_Des" DataValueField="Dec_ID" OnSelectedIndexChanged="DropDownListDeclineReason_SelectedIndexChanged"></asp:DropDownList>
+                                       </div>  
+                                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT [Dec_Des], [Dec_ID] FROM [LeaveDeclineDes]"></asp:SqlDataSource>
+                                 </div>
+                                 <div class="row">
+                                     <div class="form-group">
+                                     <asp:Label ID="LabelOther" runat="server"></asp:Label>
+                                    <asp:TextBox ID="TextBoxOther" runat="server"></asp:TextBox>
+                                         </div>
+                                     </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                    <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+                                    <asp:Button ID="ButtonDecSubmit" runat="server" Text="Submit" OnClick="ButtonDecSubmit_Click" />
+                                        </div>
+                                 </div>
+                        </div>
+                            </div>
+                                         
+                  </asp:Panel>
+                        </div>
+                    </div>
+                  
+                    <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" TargetControlID="ButtonDeclineLeaves" DropShadow="true" BackgroundCssClass="modalBackground" CancelControlID="btnCancel" PopupControlID="pnModelPopup"></ajaxToolkit:ModalPopupExtender>
+                       
+               
             </div>
         </div>           
        
@@ -88,72 +127,7 @@
   
     </div>
     <br />
-    <div class="row">
-    <div class="col-lg-12">
-            <div class="card">
-                <div class="card-header">View Leave Records</div>
-                <div class="card-body">
-                    <div class="row">
-                        
-                         <div class="col-lg-3">
-                            <div class="form-inline">
-                                <label for="Department">Select Department: </label>
-                                <asp:DropDownList ID="DropDownListLeavesByDep" runat="server" DataSourceID="SqlDataSource2" DataTextField="Dep_Name" DataValueField="Dep_ID"></asp:DropDownList>
-                                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT [Dep_ID], [Dep_Name] FROM [Department]"></asp:SqlDataSource>
-                            </div>
-                            
-                        </div>          
-                             <div class="col-lg-3">
-                           <div class="form-inline">
-                                <asp:Label ID="LabelAttFrom" runat="server" Text="From: "></asp:Label>
-                               <asp:TextBox ID="TextBoxLeavesFrom" runat="server" TextMode="Date"></asp:TextBox>
-                           </div>
-                        </div>
-                        
-                        <div class="col-lg-3">
-                           <div class="form-inline">
-                                <asp:Label ID="LabelTo" runat="server" Text="To: "></asp:Label>
-                               <asp:TextBox ID="TextBoxLeavesTo" runat="server" TextMode="Date"></asp:TextBox>
-                           </div>
-                        </div>
-                     
-                       <div class="col-lg-3">
-                           <asp:Button ID="ButtonLeavesLoad" runat="server" Text="Load" TextMode="Date" OnClick="ButtonLeavesLoad_Click1" />
-                       </div>   
-                           
-                        </div>
-                    
-                  <br />
-                  
-                    <div class="row">
-                        <div class="col-lg-6">
-                              <asp:GridView ID="GridViewAttToFrom" runat="server" AutoGenerateColumns="False" CellPadding="3" OnSelectedIndexChanged="GridViewAttToFrom_SelectedIndexChanged" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" >
-                            <Columns>
-                                <asp:BoundField DataField="Employee_ID" HeaderText="Employee ID" />
-                                <asp:BoundField DataField="F_Name" HeaderText="Name" />
-                                <asp:BoundField DataField="Req_Date" HeaderText="Leave Date" DataFormatString="{0:MM/dd/yyyy}"  HtmlEncode="false"/>
-                            </Columns>
-                            <FooterStyle BackColor="White" ForeColor="#000066" />
-                            <HeaderStyle BackColor="#006699" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="White" ForeColor="#000066" HorizontalAlign="Left" />
-                            <RowStyle ForeColor="#000066" />
-                            <SelectedRowStyle BackColor="#669999" Font-Bold="True" ForeColor="White" />
-                            <SortedAscendingCellStyle BackColor="#F1F1F1" />
-                            <SortedAscendingHeaderStyle BackColor="#007DBB" />
-                            <SortedDescendingCellStyle BackColor="#CAC9C9" />
-                            <SortedDescendingHeaderStyle BackColor="#00547E" />
-                        </asp:GridView>
-                        </div>
-                        <div class="col-lg-3">
-                            <asp:Button ID="ButtonImport" runat="server" Text="Import To Excel" OnClick="ButtonImport_Click" />
-                        </div>
-                        </div>
-                                  
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+   
        
        
    

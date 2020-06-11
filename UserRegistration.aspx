@@ -1,9 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="UserRegistration.aspx.cs" Inherits="TrigonApparel.WebForm3" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script type="text/javascript">
-        $(document).ready(function () {
-            $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
-        });
+       $(document).ready(function () {
+           $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+       });
    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -21,10 +21,8 @@
             <asp:Button ID="ButtonAddEmployee" runat="server" Text="+ Add Employee" class="btn btn-success btn-sm text-nowrap" OnClick="ButtonCreateProfile_Click" />
         </div>
     </div>
-    <br />
 
-    <!--Add Employee panel-->
-    <div>
+     <div>
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
         <asp:Panel ID="PanelAddEmployee" runat="server">
         <div class="card w-100 border-success" aria-hidden="true">
@@ -152,13 +150,13 @@
                                 
                                 <label for="EmployeeID">Employee ID:</label>
                                 <asp:TextBox ID="TextBoxEmployeeID2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                
+                                <asp:Button ID="ButtonLoadP" runat="server" Text="Button" OnClick="ButtonLoadP_Click" />
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="LastName">First Name:</label>
-                                <asp:TextBox ID="TextBoxEmail2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                <label for="FirsttName">First Name:</label>
+                                <asp:TextBox ID="TextBoxFName2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -281,4 +279,7 @@
             </div>
          </asp:Panel>
         </div>
+   
+    
+      
 </asp:Content>

@@ -24,10 +24,10 @@ namespace TrigonApparel
             if (!IsPostBack)
             {
                 GridViewApproveLeave.DataBind();
-                GridViewAttToFrom.DataBind();
+               
             }
 
-            GridViewAttToFrom.DataBind();
+          
             LoadLeaveDates();
 
         }
@@ -152,68 +152,142 @@ namespace TrigonApparel
 
         protected void ButtonLeavesLoad_Click1(object sender, EventArgs e)
         {
-            LoadLeaves();
+           
         }
-        void LoadLeaves()
-        {
-            try
-            {
-
-                SqlConnection con = new SqlConnection(strcon);
-                string squery = "Select User_Registrations.Employee_ID, F_Name, Req_Date from dbo.[User_Registrations] JOIN dbo.[Leaves] ON Leaves.Employee_ID= User_Registrations.Employee_ID JOIN dbo.[Department] ON User_Registrations.Dep_ID=Department.Dep_ID  Where Department.Dep_ID='" + DropDownListLeavesByDep.SelectedItem.Value + "' AND  Leaves.Req_Status='Approved' AND Leaves.Req_Date between '" + TextBoxLeavesFrom.Text + "' AND '" + TextBoxLeavesTo.Text + "'";
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-
-                }
-
-                SqlCommand cmd = new SqlCommand(squery, con);
-                SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-
-                GridViewAttToFrom.DataSource = dt;
-                GridViewAttToFrom.DataBind();
-
-
-                con.Close();
-
-
-
-
-            }
-            catch (Exception ex)
-            {
-                Response.Write("< script >alert ('" + ex.Message + "');</ Script >");
-
-            }
-        }
+      
 
         protected void ButtonImport_Click(object sender, EventArgs e)
         {
+
           
-            ExportGridToExcel();
         }
        
-        private void ExportGridToExcel()
-        {
-            Response.ClearContent();
-            
-            Response.AppendHeader("content-disposition","attachment; filename=LeavesSummary.xls");
-            Response.ContentType = "application/excel";
-            StringWriter stringWriter = new StringWriter();
-            HtmlTextWriter htmlTextWriter = new HtmlTextWriter(stringWriter);
-            GridViewAttToFrom.RenderControl(htmlTextWriter);
-            Response.Write(stringWriter.ToString());
-            Response.End();
-          
-
-        }
+       
         public override void VerifyRenderingInServerForm(Control control)
         {
             /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
                server control at run time. */
         }
 
+        protected void ButtonDeclineLeaves_Click(object sender, EventArgs e)
+        {
+        }
+
+        protected void DropDownListDeclineReason_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ButtonDecSubmit_Click(object sender, EventArgs e)
+        {
+            if (DropDownListDeclineReason.SelectedItem.Text=="Other")
+            {
+                foreach (GridViewRow row in GridViewApproveLeave.Rows)
+                {
+                    CheckBox status = (row.Cells[3].FindControl("CheckBoxSelectReq") as CheckBox);
+                    int applicationid = Convert.ToInt32(row.Cells[1].Text);
+                    if (status.Checked)
+                    {
+                        updateNewrow(applicationid, "Declined");
+
+                        Label2.Text = V;
+
+                    }
+                   
+
+
+                    GridViewApproveLeave.DataBind();
+
+
+
+                }
+            }
+
+            else
+            {
+                foreach (GridViewRow row in GridViewApproveLeave.Rows)
+                {
+                    CheckBox status = (row.Cells[3].FindControl("CheckBoxSelectReq") as CheckBox);
+                    int applicationid = Convert.ToInt32(row.Cells[1].Text);
+                    if (status.Checked)
+                    {
+                        updaterow(applicationid, "Declined");
+
+                        Label2.Text = V;
+
+                    }
+                    
+
+                    GridViewApproveLeave.DataBind();
+
+
+
+                }
+              
+
+            }
+            void updaterow(int applicationID, string Req_Status)
+            {
+                try
+                {
+
+                    SqlConnection con = new SqlConnection(strcon);
+                    string squery = "UPDATE dbo.[Leaves] set Req_Status='" + Req_Status + "',Decline_ID='" + DropDownListDeclineReason.SelectedItem.Value + "' where Employee_ID='" + applicationID + "'";
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        con.Open();
+
+                    }
+
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = squery;
+                    cmd.Connection = con;
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("< script >alert ('" + ex.Message + "');</ Script >");
+
+                }
+            }
+
+
+            void updateNewrow(int applicationID, string Req_Status)
+            {
+                try
+                {
+
+                    SqlConnection con = new SqlConnection(strcon);
+                    string squery = "UPDATE dbo.[Leaves] set Req_Status='" + Req_Status + "', Decline_ID='"+DropDownListDeclineReason.SelectedItem.Value+"'where Employee_ID='" + applicationID + "'";
+                    string squery2 = "INSERT to dbo.[LeaveDeclineDes] Dec_Description values Dec_Description='"+TextBoxOther.Text+"'";
+                    if (con.State == ConnectionState.Closed)
+                    {
+                        con.Open();
+
+                    }
+
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.CommandText = squery;
+                    cmd.Connection = con;
+                    cmd.ExecuteNonQuery();
+
+                    SqlCommand cmd2 = new SqlCommand();
+                    cmd2.CommandText = squery;
+                    cmd2.Connection = con;
+                    cmd2.ExecuteNonQuery();
+                    con.Close();
+
+
+                }
+                catch (Exception ex)
+                {
+                    Response.Write("< script >alert ('" + ex.Message + "');</ Script >");
+
+                }
+            }
+        }
     }
 }

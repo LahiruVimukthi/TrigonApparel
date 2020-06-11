@@ -177,13 +177,22 @@ namespace TrigonApparel
         protected global::System.Web.UI.WebControls.TextBox TextBoxEmployeeID2;
 
         /// <summary>
-        /// TextBoxEmail2 control.
+        /// ButtonLoadP control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxEmail2;
+        protected global::System.Web.UI.WebControls.Button ButtonLoadP;
+
+        /// <summary>
+        /// TextBoxFName2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxFName2;
 
         /// <summary>
         /// TextBoxLastName2 control.

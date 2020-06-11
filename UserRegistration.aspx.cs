@@ -16,7 +16,7 @@ namespace TrigonApparel
         string CustomID;
         protected void Page_Load(object sender, EventArgs e)
         {
-          
+
         }
 
         protected void ButtonCreateProfile_Click(object sender, EventArgs e)
@@ -69,7 +69,7 @@ namespace TrigonApparel
         void autoincrement()
         {
             SqlConnection con = new SqlConnection(strcon);
-            if (DropDownListJob.SelectedItem.Value=="1")
+            if (DropDownListJob.SelectedItem.Value == "1")
             {
                 string str = "select count(*) from User_Registrations where Dep_ID='1'";
                 SqlCommand com = new SqlCommand(str, con);
@@ -78,7 +78,7 @@ namespace TrigonApparel
                 CustomID = "Cut" + count;
                 con.Close();
             }
-            else if (DropDownListJob.SelectedItem.Value=="2")
+            else if (DropDownListJob.SelectedItem.Value == "2")
             {
                 string str = "select count(*) from User_Registrations where Dep_ID='2'";
                 SqlCommand com = new SqlCommand(str, con);
@@ -87,7 +87,7 @@ namespace TrigonApparel
                 CustomID = "Sew" + count;
                 con.Close();
             }
-            else if (DropDownListJob.SelectedItem.Value=="3")
+            else if (DropDownListJob.SelectedItem.Value == "3")
             {
                 string str = "select count(*) from User_Registrations where Dep_ID='3'";
                 SqlCommand com = new SqlCommand(str, con);
@@ -96,12 +96,9 @@ namespace TrigonApparel
                 CustomID = "Fin" + count;
                 con.Close();
             }
-            
-            
-            
         }
 
-        protected void DropDownListSupervisor_SelectedIndexChanged(object sender, EventArgs e)
+       protected void DropDownListSupervisor_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
@@ -122,7 +119,104 @@ namespace TrigonApparel
         }
         void GenearteAutoID()
         {
+
+        }
+
+        protected void ButtonLoad_Click(object sender, EventArgs e)
+        {
             
+
+
+
+        }
+
+        void LoadCreateProfile()
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(strcon);
+                string squery = "Select Employee_ID, F_Name, L_Name,Phn_Number,NIC_Number,City,State,Street, Department_Name  from User_Registrations WHERE Employee_ID='" + TextBoxEmployeeID2.Text + "'";
+                SqlCommand com = new SqlCommand(squery, con);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                SqlDataReader reader = com.ExecuteReader();
+
+                if (reader.Read())
+
+                {
+                    TextBoxFName2.Text = reader["F_Name"].ToString();
+                    TextBoxLastName2.Text = reader["L_Name"].ToString();
+                    TextBoxPhnNumbr2.Text = reader["Phn_Number"].ToString();
+                    TextBoxNIC2.Text = reader["NIC_Number"].ToString();
+                    DropDownListJobs2.Text = reader["Department_Name"].ToString();
+
+                    TextBox6.Text = reader["Street"].ToString();
+                    TextBox7.Text = reader["City"].ToString();
+                    TextBox8.Text = reader["State"].ToString();
+
+
+                    reader.Close();
+
+                    con.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+       
+            public void idcheck()
+            {
+                SqlConnection con = new SqlConnection(strcon);
+                con.Open();
+                string str = "select count(*)from User_Registrations where Employee_ID='" + TextBoxEmployeeID2.Text + "'";
+                SqlCommand com = new SqlCommand(str, con);
+                int count = Convert.ToInt32(com.ExecuteScalar());
+                if (count < 0)
+                {
+                    Response.Write("<script>alert('Employee does not Exist');</script>");
+                }
+            }
+        
+        void clear()
+
+        {
+            TextBoxFName2.Text = "";
+            TextBoxLastName2.Text = "";
+            TextBoxPhnNumbr2.Text = "";
+            TextBoxNIC2.Text = "";
+
+            TextboxDoJ.Text = "";
+            TextboxDoB.Text = "";
+            TextBox6.Text = "";
+            TextBox7.Text = "";
+            TextBox8.Text = "";
+        }
+
+
+        protected void TextBoxEmployeeID2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ButtonCreatePrf_Click(object sender, EventArgs e)
+        {
+            CreateProfile();
+        }
+        void CreateProfile()
+        {
+         
+        }
+
+        protected void ButtonLoadP_Click(object sender, EventArgs e)
+        {
+            clear();
+            idcheck();
+            LoadCreateProfile();
         }
     }
 }

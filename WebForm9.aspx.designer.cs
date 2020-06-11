@@ -11,106 +11,97 @@ namespace TrigonApparel
 {
 
 
-    public partial class WebForm5
+    public partial class WebForm9
     {
 
         /// <summary>
-        /// ScriptManagerAtt control.
+        /// TextBoxFullName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManagerAtt;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxFullName;
 
         /// <summary>
-        /// GridViewAttDep control.
+        /// TextBoxDep control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewAttDep;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDep;
 
         /// <summary>
-        /// DropDownListAtJob control.
+        /// TextBoxNIC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListAtJob;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxNIC;
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// TextBoxPhnNmbr control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPhnNmbr;
 
         /// <summary>
-        /// TextBoxAttDate control.
+        /// TextBoxDoB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttDate;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDoB;
 
         /// <summary>
-        /// TextBoxAttEmpID control.
+        /// TextBoxDoJ control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttEmpID;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDoJ;
 
         /// <summary>
-        /// TextBoxAttEmpName control.
+        /// TextBoxSupe control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttEmpName;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxSupe;
 
         /// <summary>
-        /// DropDownListAttStatus control.
+        /// TextBoxStreet control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListAttStatus;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxStreet;
 
         /// <summary>
-        /// SqlDataSource4 control.
+        /// TextBoxCity control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource4;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxCity;
 
         /// <summary>
-        /// TextBoxAttDateTime control.
+        /// TextBoxState control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttDateTime;
-
-        /// <summary>
-        /// ButtonAddAtt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAddAtt;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxState;
     }
 }

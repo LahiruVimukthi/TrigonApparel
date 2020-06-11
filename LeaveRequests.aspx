@@ -10,7 +10,197 @@
     <br />
     <br />
     <div class="row">
-        <div class="col-lg-6">
+       
+      <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">Request Form</div>
+                <div class="card-body">
+                    <h4>Full Day Leaves</h4>
+                    <div class="row">
+                        
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                            <label for="EmpID">Employee ID:</label>
+                                <asp:TextBox ID="TextBoxLeaveEmpID" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                </div>
+                                 <div class="form-group">
+                                 <asp:Button ID="ButtonLoad" runat="server" Text="Load" OnClick="ButtonLoad_Click" />
+                        </div>
+                            </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                            <label for="EmpName">Name:</label>
+                                <asp:TextBox ID="Empname" runat="server" CssClass="form-control form-control-sm" ReadOnly="true"></asp:TextBox>
+                               
+                        </div>
+                            </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                            <label for="DepName">Department:</label>
+                                <asp:TextBox ID="TextBoxDep" runat="server" CssClass="form-control form-control-sm" ReadOnly="true"></asp:TextBox>
+                               
+                        </div>
+                            </div>
+                       
+                        </div>
+                       
+                        <div class="row">                        
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <asp:Label ID="LabelAvaDates" runat="server" ForeColor="#009900"></asp:Label>                               
+                        </div>
+                            </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <asp:Label ID="LabelPendingDates" runat="server" ForeColor="#CC0000"></asp:Label>                               
+                        </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="LeaveDate">Select Date:</label>
+                                <asp:TextBox ID="TextBoxLeaveDate" runat="server" CssClass="form-control form-control-sm" OnTextChanged="TextBoxLeaveDate_TextChanged"></asp:TextBox>
+                            </div>
+                                </div>
+                            <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="LeaveDescription">Description:</label>
+                                <asp:TextBox ID="TextBoxLeaveDes" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            </div>
+                                </div>
+                            <div class="col-lg-3">
+                             <div class="row">
+                                 <div class="form-group">
+                                <asp:CheckBox ID="CheckBoxLeaveReq" runat="server" Text="Request"/>
+                                 <asp:Button ID="ButtonSubmitLeavReq" runat="server" Text="Submit" type="submit" OnClick="ButtonSubmitLeavReq_Click" />
+                           
+                                </div>
+                             </div>                           
+                                </div> 
+                           
+                        </div>
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <asp:Calendar ID="CalendarLeaveReq" runat="server" OnSelectionChanged="CalendarLeaveReq_SelectionChanged" Width="207px" SelectionMode="DayWeek" Height="200px"></asp:Calendar>
+                        </div>
+                                                  
+                    </div>
+                             
+                            
+                           
+                        
+                        </div>
+                        </div>
+         </div>
+         
+
+     <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">Request Form</div>
+                <div class="card-body">
+                    <h4>Half Day Leaves</h4>
+                    <div class="row">
+                        
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                            <label for="EmpID">Employee ID:</label>
+                                <asp:TextBox ID="TextBoxEmID" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                                </div>
+                                 <div class="form-group">
+                                 <asp:Button ID="ButtonHDLLoad" runat="server" Text="Load" OnClick="ButtonHDLLoad_Click"/>
+                        </div>
+                            </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                            <label for="EmpName">Name:</label>
+                                <asp:TextBox ID="TextBoxNam" runat="server" CssClass="form-control form-control-sm" ReadOnly="true"></asp:TextBox>
+                               
+                        </div>
+                            </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                            <label for="DepName">Department:</label>
+                                <asp:TextBox ID="TextBoxDept" runat="server" CssClass="form-control form-control-sm" ReadOnly="true"></asp:TextBox>
+                               
+                        </div>
+                            </div>
+                       
+                        </div>
+                       
+                        <div class="row">                        
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server" ForeColor="#009900"></asp:Label>                               
+                        </div>
+                            </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <asp:Label ID="Label2" runat="server" ForeColor="#CC0000"></asp:Label>                               
+                        </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="LeaveDate">Select Date:</label>
+                                <asp:TextBox ID="TextBox4" runat="server" CssClass="form-control form-control-sm" OnTextChanged="TextBoxLeaveDate_TextChanged"></asp:TextBox>
+                            </div>
+                                </div>
+                             <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="FromTime">From :</label>
+                                <asp:TextBox ID="TextBoxFrTime" runat="server" CssClass="form-control form-control-sm" TextMode="Time"></asp:TextBox>
+                            </div>
+                                </div>
+                             <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="ToTime">To:</label>
+                                <asp:TextBox ID="TextBoxToTime" runat="server" CssClass="form-control form-control-sm" TextMode="Time"></asp:TextBox>
+                            </div>
+                                </div>
+
+                            <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="LeaveDescription">Description:</label>
+                                <asp:TextBox ID="TextBox5" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            </div>
+                                </div>
+                            </div>
+                    <div class="row">
+                            <div class="col-lg-3">
+                             <div class="row">
+                                 <div class="form-group">
+                                <asp:CheckBox ID="CheckBoxHDleave" runat="server" Text="Request"/>
+                                 <asp:Button ID="Button2" runat="server" Text="Submit" type="submit" OnClick="Button2_Click" />
+                           
+                                </div>
+                             </div>                           
+                                </div>
+                        </div>
+                           
+                           
+                        
+                    <div class="row">
+                        <div class="col-lg-2">
+                            <asp:Calendar ID="Calendar1" runat="server"  Width="207px" SelectionMode="DayWeek" Height="200px" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
+                        </div>
+                                                  
+                    </div>
+                    </div>
+                             
+                            
+                           
+                        
+                        </div>
+                        </div>
+         </div>
+       
+      
+    <div class="row">
+     <div class="col-lg-12">
+         <div class="row">
+         <div class="col-lg-6">
             <div class ="card">
                 <div class="card-header">
                    Current Leave Requests
@@ -44,40 +234,9 @@
                 </div>
                     </div>
                 </div>
-        <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header">Request Form</div>
-                <div class="card-body">
-                    <h4>Make a Request</h4>
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                            <label for="EmpID">Employee ID:</label>
-                                <asp:TextBox ID="TextBoxLeaveEmpID" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                        </div>
-                             <div class="form-group">
-                                <label for="LeaveDate">Select Date:</label>
-                                <asp:TextBox ID="TextBoxLeaveDate" runat="server" CssClass="form-control form-control-sm" OnTextChanged="TextBoxLeaveDate_TextChanged"></asp:TextBox>
-                            </div>
-                            <div class="form-group">
-                                <label for="LeaveDescription">Description:</label>
-                                <asp:TextBox ID="TextBoxLeaveDes" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                            </div>
-                            <div class="form-group">
-                                <asp:CheckBox ID="CheckBoxLeaveReq" runat="server" Text="Request"/>
-                            </div>
-                             <div class="form-group">
-                                 <asp:Button ID="ButtonSubmitLeavReq" runat="server" Text="Submit" type="submit" OnClick="ButtonSubmitLeavReq_Click" />
-                            </div>
-                            
-                            </div>
-                        <div class="col-lg-3">
-                            <asp:Calendar ID="CalendarLeaveReq" runat="server" OnSelectionChanged="CalendarLeaveReq_SelectionChanged" Width="207px" SelectionMode="DayWeek" Height="200px"></asp:Calendar>
-                        </div>
-                        </div>
-                        </div>
-            </div>
-         </div>
-            </div>
+    </div>
+     </div>      
+    
+    </div>
         
 </asp:Content>

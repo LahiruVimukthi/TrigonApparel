@@ -11,143 +11,125 @@ namespace TrigonApparel
 {
 
 
-    public partial class WebForm6
+    public partial class WebForm8
     {
 
         /// <summary>
-        /// TextBoxLeaveEmpID control.
+        /// DropDownListAttRepByDep control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxLeaveEmpID;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListAttRepByDep;
 
         /// <summary>
-        /// ButtonLoad control.
+        /// SqlDataSource1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonLoad;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
 
         /// <summary>
-        /// Empname control.
+        /// LabelAttFromDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Empname;
+        protected global::System.Web.UI.WebControls.Label LabelAttFromDate;
 
         /// <summary>
-        /// TextBoxDep control.
+        /// TextBoxAttFromDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxDep;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxAttFromDate;
 
         /// <summary>
-        /// LabelAvaDates control.
+        /// LabelAttToDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelAvaDates;
+        protected global::System.Web.UI.WebControls.Label LabelAttToDate;
 
         /// <summary>
-        /// LabelPendingDates control.
+        /// TextBoxToDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LabelPendingDates;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxToDate;
 
         /// <summary>
-        /// TextBoxLeaveDate control.
+        /// LabelAttStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxLeaveDate;
+        protected global::System.Web.UI.WebControls.Label LabelAttStatus;
 
         /// <summary>
-        /// TextBoxLeaveDes control.
+        /// DropDownListCheckINOut control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxLeaveDes;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListCheckINOut;
 
         /// <summary>
-        /// CheckBoxLeaveReq control.
+        /// SqlDataSource2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxLeaveReq;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
 
         /// <summary>
-        /// ButtonSubmitLeavReq control.
+        /// ButtonAttLoad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonSubmitLeavReq;
+        protected global::System.Web.UI.WebControls.Button ButtonAttLoad;
 
         /// <summary>
-        /// CalendarLeaveReq control.
+        /// GridView1AttRepToFrom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar CalendarLeaveReq;
+        protected global::System.Web.UI.WebControls.GridView GridView1AttRepToFrom;
 
         /// <summary>
-        /// TextBoxEmID control.
+        /// DropDownList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxEmID;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
 
         /// <summary>
-        /// ButtonHDLLoad control.
+        /// SqlDataSource3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonHDLLoad;
-
-        /// <summary>
-        /// TextBoxNam control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxNam;
-
-        /// <summary>
-        /// TextBoxDept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxDept;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource3;
 
         /// <summary>
         /// Label1 control.
@@ -159,6 +141,15 @@ namespace TrigonApparel
         protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
+        /// TextBox1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+
+        /// <summary>
         /// Label2 control.
         /// </summary>
         /// <remarks>
@@ -168,75 +159,48 @@ namespace TrigonApparel
         protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// TextBox4 control.
+        /// TextBox2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox4;
+        protected global::System.Web.UI.WebControls.TextBox TextBox2;
 
         /// <summary>
-        /// TextBoxFrTime control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxFrTime;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// TextBoxToTime control.
+        /// DropDownListReqStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxToTime;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownListReqStatus;
 
         /// <summary>
-        /// TextBox5 control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox5;
+        protected global::System.Web.UI.WebControls.Button Button1;
 
         /// <summary>
-        /// CheckBoxHDleave control.
+        /// GridViewLeaveRep control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBoxHDleave;
-
-        /// <summary>
-        /// Button2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button2;
-
-        /// <summary>
-        /// Calendar1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Calendar Calendar1;
-
-        /// <summary>
-        /// GridViewLeaveReq control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewLeaveReq;
+        protected global::System.Web.UI.WebControls.GridView GridViewLeaveRep;
     }
 }
