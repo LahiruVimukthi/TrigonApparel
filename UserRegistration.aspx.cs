@@ -14,6 +14,7 @@ namespace TrigonApparel
     {
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
         string CustomID;
+        string CurrYear=DateTime.Now.Year.ToString();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -38,7 +39,22 @@ namespace TrigonApparel
             try
             {
                 autoincrement();
-                string squery = "INSERT INTO [dbo].[User_Registrations] (F_Name,L_Name,Phn_Number,NIC_Number,City,State,Street,Department_Name,Dep_ID,UserID) VALUES (@F_Name,@L_Name,@Phn_Number, @NIC_Number,@City,@State,@Street,@Department_Name,@Dep_ID,@UserID)";
+                
+                string gender = string.Empty;
+                if (RadioButtonM.Checked)
+                {
+                    gender = "Male";
+                }
+                else if (RadioButtonF.Checked)
+                {
+                    gender = "Female";
+                }
+                else if (RadioButtonO.Checked)
+                {
+                    gender = "Other";
+                }
+
+                string squery = "INSERT INTO [dbo].[User_Registrations] (F_Name,L_Name,Phn_Number,NIC_Number,City,State,Street,Department_Name,Dep_ID,Employee_ID,Gender,Status) VALUES (@F_Name,@L_Name,@Phn_Number, @NIC_Number,@City,@State,@Street,@Department_Name,@Dep_ID,@Employee_ID,@Gender,@Status)";
                 SqlConnection con = new SqlConnection(strcon);
                 if (con.State == ConnectionState.Closed)
                 {
@@ -54,12 +70,15 @@ namespace TrigonApparel
                 cmd.Parameters.AddWithValue("@Street", TextStreetAddress.Text.Trim());
                 cmd.Parameters.AddWithValue("@Department_Name", DropDownListJob.SelectedItem.Text);
                 cmd.Parameters.AddWithValue("@Dep_ID", DropDownListJob.SelectedItem.Value);
-                cmd.Parameters.AddWithValue("@UserID", CustomID);
+                cmd.Parameters.AddWithValue("@Employee_ID", CustomID);
+                cmd.Parameters.AddWithValue("@Gender", gender);
+                cmd.Parameters.AddWithValue("@Status","Active");
                 cmd.ExecuteNonQuery();
                 GridViewAddEmployees.DataBind();
 
                 con.Close();
-                Response.Write("<script>alert('Sign Up Successful. Go to User Login to Login');</script>");
+                Response.Write("<script>alert('Employee Registered Successfuly');</script>");
+                Response.Redirect(Request.Url.AbsoluteUri);
             }
             catch (Exception ex)
             {
@@ -75,7 +94,7 @@ namespace TrigonApparel
                 SqlCommand com = new SqlCommand(str, con);
                 con.Open();
                 int count = Convert.ToInt16(com.ExecuteScalar()) + 1;
-                CustomID = "Cut" + count;
+                CustomID = "Cut" +"/"+CurrYear+ "/"+count;
                 con.Close();
             }
             else if (DropDownListJob.SelectedItem.Value == "2")
@@ -84,7 +103,7 @@ namespace TrigonApparel
                 SqlCommand com = new SqlCommand(str, con);
                 con.Open();
                 int count = Convert.ToInt16(com.ExecuteScalar()) + 1;
-                CustomID = "Sew" + count;
+                CustomID = "Sew"+"/" +CurrYear+"/"+count;
                 con.Close();
             }
             else if (DropDownListJob.SelectedItem.Value == "3")
@@ -93,7 +112,7 @@ namespace TrigonApparel
                 SqlCommand com = new SqlCommand(str, con);
                 con.Open();
                 int count = Convert.ToInt16(com.ExecuteScalar()) + 1;
-                CustomID = "Fin" + count;
+                CustomID = "Fin"+"/" +CurrYear+"/"+count;
                 con.Close();
             }
         }
@@ -217,6 +236,7 @@ namespace TrigonApparel
             clear();
             idcheck();
             LoadCreateProfile();
+           
         }
     }
 }

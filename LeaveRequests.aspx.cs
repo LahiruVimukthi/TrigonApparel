@@ -103,7 +103,7 @@ namespace TrigonApparel
         {
           
             SqlConnection con = new SqlConnection(strcon);
-            SqlCommand cmd = new SqlCommand("Select * from Leaves where Employee_ID='" + TextBoxLeaveEmpID.Text + "' AND Req_Status='Approved'");
+            SqlCommand cmd = new SqlCommand("Select * from Leaves where Employee_ID='" + TextBoxLeaveEmpID.Text + "' AND Req_Status='Approved'",con);
             SqlDataAdapter ap = new SqlDataAdapter(cmd.CommandText, con);
             con.Open();
             DataSet ds = new DataSet();
@@ -117,7 +117,7 @@ namespace TrigonApparel
         {
 
             SqlConnection con = new SqlConnection(strcon);
-            SqlCommand cmd = new SqlCommand("Select * from Leaves where Employee_ID='" + TextBoxLeaveEmpID.Text + "' AND Req_Status='Pending'");
+            SqlCommand cmd = new SqlCommand("Select * from Leaves where Employee_ID='" + TextBoxLeaveEmpID.Text + "' AND Req_Status='Pending'",con);
             SqlDataAdapter ap = new SqlDataAdapter(cmd.CommandText, con);
             con.Open();
             DataSet ds = new DataSet();

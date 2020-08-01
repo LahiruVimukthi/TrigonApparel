@@ -88,6 +88,8 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Web.DataVisualization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -115,7 +117,6 @@
     <Content Include="Bootstrap\JS\bootstrap.min.js" />
     <Content Include="Bootstrap\JS\jquery-3.3.1.slim.min.js" />
     <Content Include="Bootstrap\JS\popper.min.js" />
-    <Content Include="Crystal Testing.aspx" />
     <Content Include="CustomStyleSheet.css" />
     <Content Include="Datatables\Css.txt" />
     <Content Include="Datatables\css\Css.css" />
@@ -1719,6 +1720,9 @@
     <Content Include="fontawesome-free-5.12.1-web\webfonts\fa-brands-400.svg" />
     <Content Include="fontawesome-free-5.12.1-web\webfonts\fa-regular-400.svg" />
     <Content Include="fontawesome-free-5.12.1-web\webfonts\fa-solid-900.svg" />
+    <Content Include="Homepage.aspx" />
+    <Content Include="Images\506-5067615_triangle-white-freetoedit-geometric-trigon-frame-triangle-logo.png" />
+    <Content Include="Images\maxresdefault.jpg" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1732,6 +1736,7 @@
     <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="UserProfile.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
     <Content Include="Login.aspx" />
@@ -1740,16 +1745,22 @@
     <Content Include="AttendanceMark.aspx" />
     <Content Include="LeaveRequests.aspx" />
     <Content Include="LeaveApproval.aspx" />
-    <Content Include="WebForm8.aspx" />
+    <Content Include="UserProfiles.aspx" />
+    <Content Include="Reports.aspx" />
+    <Content Include="UserLogin.aspx" />
+    <Content Include="HomePages.aspx" />
+    <Content Include="PerformanceMark.aspx" />
+    <Content Include="AssetManagement.aspx" />
+    <Content Include="AssetDetails.aspx" />
     <Content Include="WebForm9.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Crystal Testing.aspx.cs">
-      <DependentUpon>Crystal Testing.aspx</DependentUpon>
+    <Compile Include="Homepage.aspx.cs">
+      <DependentUpon>Homepage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Crystal Testing.aspx.designer.cs">
-      <DependentUpon>Crystal Testing.aspx</DependentUpon>
+    <Compile Include="Homepage.aspx.designer.cs">
+      <DependentUpon>Homepage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site1.Master.cs">
@@ -1760,6 +1771,13 @@
       <DependentUpon>Site1.Master</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="WebForm1.aspx.cs">
       <DependentUpon>WebForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1809,12 +1827,54 @@
     <Compile Include="LeaveApproval.aspx.designer.cs">
       <DependentUpon>LeaveApproval.aspx</DependentUpon>
     </Compile>
-    <Compile Include="WebForm8.aspx.cs">
-      <DependentUpon>WebForm8.aspx</DependentUpon>
+    <Compile Include="UserProfiles.aspx.cs">
+      <DependentUpon>UserProfiles.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="WebForm8.aspx.designer.cs">
-      <DependentUpon>WebForm8.aspx</DependentUpon>
+    <Compile Include="UserProfiles.aspx.designer.cs">
+      <DependentUpon>UserProfiles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="UserLogin.aspx.cs">
+      <DependentUpon>UserLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserLogin.aspx.designer.cs">
+      <DependentUpon>UserLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="HomePages.aspx.cs">
+      <DependentUpon>HomePages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="HomePages.aspx.designer.cs">
+      <DependentUpon>HomePages.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PerformanceMark.aspx.cs">
+      <DependentUpon>PerformanceMark.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PerformanceMark.aspx.designer.cs">
+      <DependentUpon>PerformanceMark.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagement.aspx.cs">
+      <DependentUpon>AssetManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetManagement.aspx.designer.cs">
+      <DependentUpon>AssetManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AssetDetails.aspx.cs">
+      <DependentUpon>AssetDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AssetDetails.aspx.designer.cs">
+      <DependentUpon>AssetDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm9.aspx.cs">
       <DependentUpon>WebForm9.aspx</DependentUpon>
@@ -1902,6 +1962,9 @@
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AssetImages\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -1917,7 +1980,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>6933</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44364/</IISUrl>
+          <IISUrl>https://localhost:44365/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

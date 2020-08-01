@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace TrigonApparel
 {
-    public partial class Crystal_Testing : System.Web.UI.Page
+    public partial class UserProfile : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

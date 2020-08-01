@@ -5,11 +5,23 @@
 <html>
 <head runat="server">
     <title></title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="Datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link  rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" ></script>
+
+     <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.22/jquery-ui.js"></script>
     
-   
-    
+    <script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" ></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" ></script>
+    <link href="fontawesome-free-5.12.1-web/css/all.css" rel="stylesheet" />
+    <script src="fontawesome-free-5.12.1-web/js/all.js"></script>
+
+
    
     
 
@@ -26,8 +38,8 @@
     <form id="form1" runat="server">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
                 <a class="navbar-brand" href="#">
-                    <img src="imgs/books.png" width="30" height="30" />
-                    E-Library
+                    <img src="Images/506-5067615_triangle-white-freetoedit-geometric-trigon-frame-triangle-logo.png" width="50" height="50"/> 
+                   TRIGON Apparel-MIHINTHALE
                 </a>
  
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,10 +62,7 @@
  
                     <ul class="navbar-nav">
                         <li class="nav-item active">
-                            <asp:LinkButton class="nav-link" ID="LinkButton1" runat="server" OnClick="LinkButton1_Click1">User Login</asp:LinkButton>
-                        </li>
-                        <li class="nav-item active">
-                            <asp:LinkButton class="nav-link" ID="LinkButton2" runat="server" OnClick="LinkButton2_Click">Sign Up</asp:LinkButton>
+                            <asp:LinkButton class="nav-link" ID="LinkButtonLogin" runat="server" OnClick="LinkButtonLogin_Click">User Login</asp:LinkButton>
                         </li>
                         <li class="nav-item active">
                             <asp:LinkButton class="nav-link" ID="LinkButton3" runat="server" OnClick="LinkButton3_Click">Logout</asp:LinkButton>
@@ -71,7 +80,7 @@
             <div class="col-lg-2">
                 <div class="sidenav">
                     <asp:LinkButton ID="LinkButtonEmployees" runat="server">Employees</asp:LinkButton><br />
-                    <asp:LinkButton ID="LinkButtonAttendance" runat="server">Attendance</asp:LinkButton><br />
+                    <asp:LinkButton ID="LinkButtonAttendance" runat="server" OnClick="LinkButtonAttendance_Click" >Attendance</asp:LinkButton><br />
                     <asp:LinkButton ID="LinkButtonPerformance" runat="server">Performance</asp:LinkButton><br />
                     <asp:LinkButton ID="LinkButtonFeedback" runat="server">Feedbacks</asp:LinkButton><br />
                     <asp:LinkButton ID="LinkButtonAssets" runat="server">Assets</asp:LinkButton><br />
@@ -85,12 +94,8 @@
             </div>  
             </div>
     </form>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     
-    <script src="Datatables/jquery/jquery-3.5.1.js"></script>
-    <script src="Datatables/jquery/jquery.dataTables.min.js"></script>
+    
     
     
     

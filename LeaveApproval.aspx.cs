@@ -14,7 +14,7 @@ namespace TrigonApparel
 {
     public partial class WebForm7 : System.Web.UI.Page
     {
-        private const string V = "Updated";
+        private const string V = "Approved";
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
         private DataTable socialEvents;
         protected void Page_Load(object sender, EventArgs e)
@@ -47,10 +47,10 @@ namespace TrigonApparel
             foreach (GridViewRow row in GridViewApproveLeave.Rows)
             {
                 CheckBox status = (row.Cells[3].FindControl("CheckBoxSelectReq") as CheckBox);
-                int applicationid = Convert.ToInt32(row.Cells[1].Text);
+                string EmployeeID =(row.Cells[1].Text);
                 if (status.Checked)
                 {
-                    updaterow(applicationid, "Approved");
+                    updaterow(EmployeeID, "Approved");
                     
                     Label2.Text = V;
 
@@ -62,13 +62,13 @@ namespace TrigonApparel
 
 
             }
-            void updaterow(int applicationID, string Req_Status)
+            void updaterow(string EmployeeID, string Req_Status)
             {
                 try
                 {
 
                     SqlConnection con = new SqlConnection(strcon);
-                    string squery = "UPDATE dbo.[Leaves] set Req_Status='" + Req_Status + "' where Employee_ID='" + applicationID + "'";
+                    string squery = "UPDATE dbo.[Leaves] set Req_Status='" + Req_Status + "' where Employee_ID='" + EmployeeID + "'";
                     if (con.State == ConnectionState.Closed)
                     {
                         con.Open();
@@ -185,10 +185,10 @@ namespace TrigonApparel
                 foreach (GridViewRow row in GridViewApproveLeave.Rows)
                 {
                     CheckBox status = (row.Cells[3].FindControl("CheckBoxSelectReq") as CheckBox);
-                    int applicationid = Convert.ToInt32(row.Cells[1].Text);
+                    string EmployeeID =(row.Cells[1].Text);
                     if (status.Checked)
                     {
-                        updateNewrow(applicationid, "Declined");
+                        updateNewrow(EmployeeID, "Declined");
 
                         Label2.Text = V;
 
@@ -208,10 +208,10 @@ namespace TrigonApparel
                 foreach (GridViewRow row in GridViewApproveLeave.Rows)
                 {
                     CheckBox status = (row.Cells[3].FindControl("CheckBoxSelectReq") as CheckBox);
-                    int applicationid = Convert.ToInt32(row.Cells[1].Text);
+                    string EmployeeID =(row.Cells[1].Text);
                     if (status.Checked)
                     {
-                        updaterow(applicationid, "Declined");
+                        updaterow(EmployeeID, "Declined");
 
                         Label2.Text = V;
 
@@ -226,13 +226,13 @@ namespace TrigonApparel
               
 
             }
-            void updaterow(int applicationID, string Req_Status)
+            void updaterow(string EmployeeID, string Req_Status)
             {
                 try
                 {
 
                     SqlConnection con = new SqlConnection(strcon);
-                    string squery = "UPDATE dbo.[Leaves] set Req_Status='" + Req_Status + "',Decline_ID='" + DropDownListDeclineReason.SelectedItem.Value + "' where Employee_ID='" + applicationID + "'";
+                    string squery = "UPDATE dbo.[Leaves] set Req_Status='" + Req_Status + "',Decline_ID='" + DropDownListDeclineReason.SelectedItem.Value + "' where Employee_ID='" + EmployeeID + "'";
                     if (con.State == ConnectionState.Closed)
                     {
                         con.Open();
@@ -255,13 +255,13 @@ namespace TrigonApparel
             }
 
 
-            void updateNewrow(int applicationID, string Req_Status)
+            void updateNewrow(string EmployeeID, string Req_Status)
             {
                 try
                 {
 
                     SqlConnection con = new SqlConnection(strcon);
-                    string squery = "UPDATE dbo.[Leaves] set Req_Status='" + Req_Status + "', Decline_ID='"+DropDownListDeclineReason.SelectedItem.Value+"'where Employee_ID='" + applicationID + "'";
+                    string squery = "UPDATE dbo.[Leaves] set Req_Status='" + Req_Status + "', Decline_ID='"+DropDownListDeclineReason.SelectedItem.Value+ "' where Employee_ID='" + EmployeeID + "'";
                     string squery2 = "INSERT to dbo.[LeaveDeclineDes] Dec_Description values Dec_Description='"+TextBoxOther.Text+"'";
                     if (con.State == ConnectionState.Closed)
                     {
@@ -288,6 +288,37 @@ namespace TrigonApparel
 
                 }
             }
+        }
+
+        protected void GridViewTest_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ButtonLoadleaves_Click(object sender, EventArgs e)
+        {
+           GetCurrentLeaves();
+        }
+
+        void GetCurrentLeaves()
+        {
+
+            SqlConnection con = new SqlConnection(strcon);
+            SqlCommand cmd = new SqlCommand("Select * from Leaves where Dep_ID='" + DropDownListDept.SelectedItem.Value + "' AND Req_Status='Approved' AND Req_Date='"+TextBoxDate.Text+"'", con);
+            SqlDataAdapter ap = new SqlDataAdapter(cmd.CommandText, con);
+            con.Open();
+            DataSet ds = new DataSet();
+            ap.Fill(ds);
+            LabelCur.Text = "Today: " + ds.Tables[0].Rows.Count.ToString() + " Leaves";
+
+            SqlCommand cmd2 = new SqlCommand("Select * from User_Registrations where Dep_ID='" + DropDownListDept.SelectedItem.Value + "'", con);
+            SqlDataAdapter ap2 = new SqlDataAdapter(cmd2.CommandText, con);
+            DataSet ds2 = new DataSet();
+            ap2.Fill(ds2);
+            LabelTot.Text = "Total Line Workers : " + ds2.Tables[0].Rows.Count.ToString();
+
+
+            con.Close();
         }
     }
 }

@@ -209,5 +209,16 @@ namespace TrigonApparel
                 }
             }
         }
+
+        protected void DropDownListDep2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void ButtonLoad_Click(object sender, EventArgs e)
+        {
+           
+        }
+        
     }
 }

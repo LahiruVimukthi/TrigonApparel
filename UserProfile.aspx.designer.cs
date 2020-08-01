@@ -11,17 +11,8 @@ namespace TrigonApparel
 {
 
 
-    public partial class Site1
+    public partial class UserProfile
     {
-
-        /// <summary>
-        /// head control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
         /// <summary>
         /// form1 control.
@@ -33,102 +24,84 @@ namespace TrigonApparel
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// LinkButtonLogin control.
+        /// PanelPersonal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonLogin;
+        protected global::System.Web.UI.WebControls.Panel PanelPersonal;
 
         /// <summary>
-        /// LinkButton3 control.
+        /// LabelFullName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton3;
+        protected global::System.Web.UI.WebControls.Label LabelFullName;
 
         /// <summary>
-        /// LinkButton7 control.
+        /// TextBoxFullName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButton7;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxFullName;
 
         /// <summary>
-        /// LinkButtonEmployees control.
+        /// LabelPhn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonEmployees;
+        protected global::System.Web.UI.WebControls.Label LabelPhn;
 
         /// <summary>
-        /// LinkButtonAttendance control.
+        /// TextBoxPhn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonAttendance;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxPhn;
 
         /// <summary>
-        /// LinkButtonPerformance control.
+        /// LabelNIC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonPerformance;
+        protected global::System.Web.UI.WebControls.Label LabelNIC;
 
         /// <summary>
-        /// LinkButtonFeedback control.
+        /// TextBoxNIC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonFeedback;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxNIC;
 
         /// <summary>
-        /// LinkButtonAssets control.
+        /// LabelDoB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonAssets;
+        protected global::System.Web.UI.WebControls.Label LabelDoB;
 
         /// <summary>
-        /// LinkButtonAnnouncements control.
+        /// TextBoxDoB control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonAnnouncements;
-
-        /// <summary>
-        /// LinkButtonreports control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LinkButtonreports;
-
-        /// <summary>
-        /// ContentPlaceHolder1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDoB;
     }
 }

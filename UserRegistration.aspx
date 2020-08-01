@@ -9,7 +9,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="row">
         <center>
-            <p>User Registration</p>
+            <h4>Employee Registration</h4>
         </center>
     </div>
     <br />
@@ -39,19 +39,22 @@
                         <div class="form-group">
                             <label for="email">First Name:</label>
                                 <asp:TextBox ID="TextBoxFName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorFName" runat="server" ErrorMessage="First Name Empty" ControlToValidate="TextBoxFName" ForeColor="Maroon"></asp:RequiredFieldValidator>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="email">Last Name:</label>
                                 <asp:TextBox ID="TextBoxLName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorLName" runat="server" ErrorMessage="Last Name Empty" ControlToValidate="TextBoxLName" ForeColor="Maroon"></asp:RequiredFieldValidator>
+
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="form-group">
-                            <label for="JobTitle">Job Title:</label>
+                            <label for="JobTitle">Department:</label>
                                 <asp:DropDownList ID="DropDownListJob" runat="server" OnSelectedIndexChanged="DropDownListJob_SelectedIndexChanged" CssClass="form-control form-control-sm" DataSourceID="SqlDataSource1" DataTextField="Dep_Name" DataValueField="Dep_ID" >
                                 </asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT [Dep_Name], [Dep_ID] FROM [Department]"></asp:SqlDataSource>
@@ -60,14 +63,31 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="PhoneNumber">PhoneNumber:</label>
-                                <asp:TextBox ID="TextBoxPhnNmbr" runat="server" CssClass="form-control form-control-sm" TextMode="Number"></asp:TextBox>                               
+                                <asp:TextBox ID="TextBoxPhnNmbr" runat="server" CssClass="form-control form-control-sm" TextMode="Number"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorPhnNumber" runat="server" ErrorMessage="Phone Number Empty" ControlToValidate="TextBoxPhnNmbr" ForeColor="Maroon"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="RegularExpressionValidatorPhnNumber" runat="server" ErrorMessage="Invalid Phone Number"  ControlToValidate="TextBoxPhnNmbr" ValidationExpression="\d{10}"></asp:RegularExpressionValidator>
+                            
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="NIC Number">NIC Number:</label>
-                                <asp:TextBox ID="TextBoxNICNmbr" runat="server" CssClass="form-control form-control-sm" TextMode="Number"></asp:TextBox>                               
+                                <asp:TextBox ID="TextBoxNICNmbr" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorNIC" runat="server" ErrorMessage="Please enter NIC Number" ControlToValidate="TextBoxNICNmbr" ForeColor="Maroon"></asp:RequiredFieldValidator>
+                          
+                            
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-8">
+                        
+                        <div class="form-group">
+                        <label for="Gender">Gender:</label>
+                        <asp:RadioButton ID="RadioButtonM" runat="server" GroupName="Gender" Text=" Male" />
+                        <asp:RadioButton ID="RadioButtonF" runat="server"  GroupName="Gender"  Text=" Female"/>
+                        <asp:RadioButton ID="RadioButtonO" runat="server"  GroupName="Gender"  Text=" Other"/>
+                        </div>                       
                     </div>
                 </div>
                 <div class="row">
@@ -75,26 +95,36 @@
                         <div class="form-group ">
                             <label for="Address">Address:</label>
                             <asp:TextBox ID="TextStreetAddress" runat="server" CssClass="form-control form-control-sm" TextMode="SingleLine"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorStreet" runat="server" ErrorMessage="Enter Street" ControlToValidate="TextStreetAddress" ForeColor="Black" Font-Italic="True"></asp:RequiredFieldValidator>
+
                         </div>
                         </div>
                             </div>
-                        <hr />
+                     
                         <div class="row">
                             <div class="col-sm-10">
+                                <div class="form-group ">
                                  <asp:TextBox ID="TextBoxCityAddrs" runat="server" CssClass="form-control form-control-sm" TextMode="SingleLine"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorCity" runat="server" ErrorMessage="Enter City" ControlToValidate="TextBoxCityAddrs" Font-Italic="True" ForeColor="Black"></asp:RequiredFieldValidator>
+                                    </div>
                             </div>
                         </div>
-                        <hr />
+                       
                         <div class="row">
                             <div class="col-sm-10">
+                                <div class="form-group ">
                                 <asp:TextBox ID="TextBoxStateAddrs" runat="server" CssClass="form-control form-control-sm" TextMode="SingleLine"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="RequiredFieldValidatorState" runat="server" ErrorMessage="Enter State" ControlToValidate="TextBoxStateAddrs" ForeColor="Black" Font-Italic="True"></asp:RequiredFieldValidator>
+                                    </div>
                             </div>
                         </div>
-                        <hr />
+                        
                         <div class="row">
+                            <div class="form-group ">
                             <center>
                                <asp:Button runat="server" Text="Submit" class="btn-primary" OnClick="Unnamed1_Click"></asp:Button>
-                            </center>                                                
+                            </center> 
+                                </div>
                         </div>
                     
                 </div>
@@ -102,6 +132,7 @@
         <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="PanelAddEmployee" TargetControlID="ButtonAddEmployee" CancelControlID="btnclose"></ajaxToolkit:ModalPopupExtender>
         </asp:Panel>
         </div>
+    <br />
 
      <!--Employee Details GridView-->
     <div class="row">
@@ -150,7 +181,7 @@
                                 
                                 <label for="EmployeeID">Employee ID:</label>
                                 <asp:TextBox ID="TextBoxEmployeeID2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                <asp:Button ID="ButtonLoadP" runat="server" Text="Button" OnClick="ButtonLoadP_Click" />
+                                <asp:Button ID="ButtonLoadP" runat="server" Text="Load" OnClick="ButtonLoadP_Click" />
                             </div>
                         </div>
                         <div class="col-sm-4">

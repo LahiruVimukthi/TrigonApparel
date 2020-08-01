@@ -15,7 +15,7 @@
             <div class="card text-black bg-light mb-3">
                 <div class="card-header">Approvals</div>
                 <div class="card-body">
-                    <asp:GridView Class="table" ID="GridViewApproveLeave" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="GridViewApproveLeave_SelectedIndexChanged" Font-Size="Medium" HorizontalAlign="Justify" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <asp:GridView Class="table" ID="GridViewApproveLeave" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource4" OnSelectedIndexChanged="GridViewApproveLeave_SelectedIndexChanged" Font-Size="Medium" HorizontalAlign="Justify" CellPadding="4" ForeColor="#333333" GridLines="None">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                             <asp:TemplateField HeaderText="Select">
@@ -23,16 +23,11 @@
                                     <asp:CheckBox ID="CheckBoxSelectReq" runat="server" />
                                 </ItemTemplate>
                             </asp:TemplateField>
-                            <asp:BoundField DataField="Employee_ID" HeaderText="Employee_ID" SortExpression="Employee_ID" />
-                            <asp:TemplateField HeaderText="Leave Date" >
-                                <ItemTemplate>
-                                    <asp:Label ID="lbl1" runat="server" DataFormatString="{0:yyyy-MMMM-dd}" HtmlEncode="false"
-                                        Text='<%#Eval("Req_Date","{0:yyyy-MMMM-dd}") %>'>
-                                    </asp:Label>
-                                </ItemTemplate>
-                            </asp:TemplateField>
+                            <asp:BoundField DataField="Employee_ID" HeaderText="Employee_ID" SortExpression="Employee_ID" InsertVisible="False" ReadOnly="True" />
+                            <asp:BoundField DataField="F_Name" HeaderText="F_Name" SortExpression="F_Name" />
+                            <asp:BoundField DataField="Dep_Name" HeaderText="Dep_Name" SortExpression="Dep_Name" />
+                            <asp:BoundField DataField="Req_Date" HeaderText="Req_Date" SortExpression="Req_Date" DataFormatString="{0:MM/dd/yyyy}"/>
                             <asp:BoundField DataField="Req_Status" HeaderText="Req_Status" SortExpression="Req_Status" />
-                            <asp:BoundField DataField="Req_Description" HeaderText="Req_Description" SortExpression="Req_Description" />
                         </Columns>
                         <EditRowStyle BackColor="#999999" />
                         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
@@ -45,6 +40,7 @@
                         <SortedDescendingCellStyle BackColor="#FFFDF8" />
                         <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
                     </asp:GridView>
+                    <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="Select User_Registrations.Employee_ID, F_Name, Dep_Name, Req_Date, Req_Status from User_Registrations JOIN Department ON User_Registrations.Dep_ID=Department.Dep_ID JOIN Leaves ON Leaves.Employee_ID=User_Registrations.Employee_ID WHERE Req_Status='Pending'"></asp:SqlDataSource>
                     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT Employee_ID,Req_Date,Req_Status,Req_Description FROM dbo.[Leaves] WHERE (Req_Status='Pending') "></asp:SqlDataSource>
                 </div>
                 <asp:Label ID="Label2" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#003366"></asp:Label>
@@ -118,15 +114,74 @@
                             <TodayDayStyle BackColor="#CCCCCC" />
                         </asp:Calendar>
                              </div>
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="form-group">
+                                    <asp:Label ID="LabelToTLeaves" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                             <div class="col-lg-3">
+                                <div class="form-group">
+                                    <asp:Label ID="LabelCurLeaves" runat="server"></asp:Label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                <asp:GridView ID="GridViewTest" runat="server"></asp:GridView>
+                <asp:GridView ID="GridViewTest" runat="server" OnSelectedIndexChanged="GridViewTest_SelectedIndexChanged"></asp:GridView>
+
             </div>
         </div>
             </div>
          
   
     </div>
-    <br />
+
+    <div class="row">
+        <div class="col-lg-11">
+            <div class="card">
+                <div class="card-header">Daily Department Summary</div><br />
+                <div class="body">
+                  
+                        <div class="row">
+                            <div class="col-lg-3">
+                              <div class="form-group">
+                                <asp:Label ID="LabelDep" runat="server" Text="Select Department: "></asp:Label>
+                                <asp:DropDownList ID="DropDownListDept" runat="server" DataSourceID="SqlDataSource3" DataTextField="Dep_Name" DataValueField="Dep_ID"></asp:DropDownList>
+                                <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT * FROM [Department]"></asp:SqlDataSource>                       
+                                </div>
+                                </div>
+                            <div class="col-lg-3">
+                            <div class="form-group">
+                                <asp:Label ID="LabelDate" runat="server" Text="Date: "></asp:Label>
+                                <asp:TextBox ID="TextBoxDate" runat="server" TextMode="Date"></asp:TextBox>          
+                                </div>
+                                </div>
+                            <div class="col-lg-2">
+                            <div class="form-group">
+                            <asp:Button ID="Button1" runat="server" Text="Load" OnClick="ButtonLoadleaves_Click" />
+                    </div>
+                                </div>
+                            </div>
+                            
+                       
+                             <div class="row">
+                                 <div class="col-lg-3">
+                             <div class="form-group">
+                                <asp:Label ID="LabelTot" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#006600"></asp:Label>                      
+                            </div>
+                                     </div>
+                                 <div class="col-lg-3">
+                                  <div class="form-group">
+                                <asp:Label ID="LabelCur" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="Maroon"></asp:Label>
+                                </div>
+                                     </div>
+                             </div>
+                            
+                        </div>
+                </div>
+            </div>        
+    </div>
+
    
        
        

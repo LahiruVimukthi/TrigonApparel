@@ -197,7 +197,7 @@
          </div>
        
       
-    <div class="row">
+   <!-- <div class="row">
      <div class="col-lg-12">
          <div class="row">
          <div class="col-lg-6">
@@ -237,6 +237,6 @@
     </div>
      </div>      
     
-    </div>
+    </div>-->
         
 </asp:Content>
