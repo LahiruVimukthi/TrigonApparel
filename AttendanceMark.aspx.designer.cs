@@ -24,13 +24,13 @@ namespace TrigonApparel
         protected global::System.Web.UI.ScriptManager ScriptManagerAtt;
 
         /// <summary>
-        /// GridViewAttDep control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridViewAttDep;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// DropDownListAtJob control.
@@ -60,57 +60,84 @@ namespace TrigonApparel
         protected global::System.Web.UI.WebControls.TextBox TextBoxAttDate;
 
         /// <summary>
-        /// TextBoxAttEmpID control.
+        /// GridViewAttDep control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttEmpID;
+        protected global::System.Web.UI.WebControls.GridView GridViewAttDep;
 
         /// <summary>
-        /// TextBoxAttEmpName control.
+        /// ButtonAdd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttEmpName;
+        protected global::System.Web.UI.WebControls.Button ButtonAdd;
 
         /// <summary>
-        /// DropDownListAttStatus control.
+        /// GridView2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownListAttStatus;
+        protected global::System.Web.UI.WebControls.GridView GridView2;
 
         /// <summary>
-        /// SqlDataSource4 control.
+        /// PanelAtt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource4;
+        protected global::System.Web.UI.WebControls.Panel PanelAtt;
 
         /// <summary>
-        /// TextBoxAttDateTime control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxAttDateTime;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
 
         /// <summary>
-        /// ButtonAddAtt control.
+        /// Button5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonAddAtt;
+        protected global::System.Web.UI.WebControls.Button Button5;
+
+        /// <summary>
+        /// Button6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button6;
+
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
+
+        /// <summary>
+        /// ModalPopupExtender3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.ModalPopupExtender ModalPopupExtender3;
     }
 }

@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
+using System.Drawing;
 
 namespace TrigonApparel
 {
@@ -20,11 +21,11 @@ namespace TrigonApparel
         int Asset_ID;
         string From_Date;
         string To_Date;
+        static string global_filepath;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            TextBoxAddMod.Enabled = false;
-            TextBoxAddCat.Enabled = false;
+            
             AddROrder();
             TextBoxRDate.Text = DateTime.Now.ToString("MM/dd/yyyy");
            
@@ -56,8 +57,21 @@ namespace TrigonApparel
             try
             {
 
+                string filepath = "~/AssetImages/";
+                string filename = Path.GetFileName(FileUploadImg.PostedFile.FileName);
+                if (filename == "" || filename == null)
+                {
+                    filepath = global_filepath;
 
-                string squery = "INSERT INTO [dbo].[AssetDescription] (Add_Date,Status,Serial_Number,Current_Quantity,Category,Model,Description,Current_Status) VALUES(@Add_Date,@Status,@Serial_Number,@Current_Quantity,@Category,@Model,@Description,@Current_Status)";
+                }
+                else
+                {
+                    FileUploadImg.SaveAs(Server.MapPath("AssetImages/" + filename));
+                    filepath = "~/AssetImages/" + filename;
+                }
+
+
+                string squery = "INSERT INTO [dbo].[AssetDescription] (Add_Date,Status,Serial_Number,Current_Quantity,Category,Model,Description,Current_Status,Imgpath) VALUES(@Add_Date,@Status,@Serial_Number,@Current_Quantity,@Category,@Model,@Description,@Current_Status,@Imgpath)";
                 SqlConnection con = new SqlConnection(strcon);
                 
                 if (con.State == ConnectionState.Closed)
@@ -74,7 +88,7 @@ namespace TrigonApparel
                 cmd.Parameters.AddWithValue("@Model", DropDownListMod3.SelectedItem.Text);
                 cmd.Parameters.AddWithValue("@Description", TextBoxDes.Text.Trim());
                 cmd.Parameters.AddWithValue("@Current_Status", "Available");
-
+                cmd.Parameters.AddWithValue("@Imgpath",filepath);
                 cmd.ExecuteNonQuery();
                 con.Close();
                 //Inserting in to Models Table
@@ -126,8 +140,8 @@ namespace TrigonApparel
             SqlConnection con = new SqlConnection(strcon);
             con.Open();
             SqlCommand sc2 = new SqlCommand("INSERT INTO dbo.Asset_Models Model,AssetType_ID VALUES (@Model,@AssetType_ID)", con);
-            sc2.Parameters.AddWithValue("@Model", DropDownListMod3.SelectedItem.Text);
-            sc2.Parameters.AddWithValue("@AssetType_ID", DropDownListSelCat3.SelectedItem.Text);
+            sc2.Parameters.AddWithValue("@Model", TextBoxAddMod.Text);
+            sc2.Parameters.AddWithValue("@AssetType_ID", DropDownListSelCat3.SelectedItem.Value);
 
 
 
@@ -137,16 +151,7 @@ namespace TrigonApparel
 
         protected void DropDownListMod3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (DropDownListSelCat3.SelectedValue == "Other")
-            {
-                TextBoxAddMod.Enabled = true;
-                TextBoxAddMod.Text = string.Empty;
-            }
-            else
-            {
-                TextBoxAddMod.Enabled = false;
-
-            }
+           
         }
 
        
@@ -177,16 +182,7 @@ namespace TrigonApparel
         protected void DropDownListSelCat3_SelectedIndexChanged(object sender, EventArgs e)
         {
             loadModel();
-            if (DropDownListSelCat3.SelectedValue == "Other")
-            {
-                TextBoxAddCat.Enabled = true;
-                TextBoxAddCat.Text = string.Empty;
-            }
-            else
-            {
-                TextBoxAddCat.Enabled = false;
-
-            }
+            
         }
 
         protected void DropDownListSelDep_SelectedIndexChanged(object sender, EventArgs e)
@@ -317,6 +313,7 @@ namespace TrigonApparel
                     TextBoxUser.Text = reader["Employee_ID"].ToString();
                     Label6.Text = reader["From_Date"].ToString();
                     Label8.Text = reader["To_Date"].ToString();
+                    TextBoxReID.Text= reader["Order_ID"].ToString();
                     reader.Close();
 
                     con.Close();
@@ -332,7 +329,7 @@ namespace TrigonApparel
 
         protected void ButtonUpdate_Click(object sender, EventArgs e)
         {
-            string squery= "UPDATE [dbo].[AssetMgmt] SET From_Date='"+ TextBoxEFrom.Text.ToString()+ "',To_Date='"+TextBoxETo.Text.ToString()+ "' WHERE Asset_ID='"+TextBox1AID.Text+"' ";
+            string squery= "UPDATE [dbo].[AssetMgmt] SET To_Date='"+TextBoxETo.Text.ToString()+ "' WHERE Asset_ID='"+TextBox1AID.Text+ "' AND Order_ID='"+TextBoxReID.Text+"' ";
             SqlConnection con = new SqlConnection(strcon);
             SqlCommand command = new SqlCommand(squery,con);
             con.Open();
@@ -340,6 +337,189 @@ namespace TrigonApparel
             con.Close();
             Label9.Text = "Updated successfully";
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            dispose();
+        }
+
+        protected void ButtonDAIDGo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(strcon);
+                string squery = "SELECT * FROM [dbo].[AssetDescription] WHERE Asset_ID='" + TextBoxDAID.Text + "' ";
+                SqlCommand com = new SqlCommand(squery, con);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                SqlDataReader reader = com.ExecuteReader();
+
+                if (reader.Read())
+
+                {
+                    TextBoxDMCat.Text = reader["Category"].ToString();
+                    TextBoxDMod.Text = reader["Model"].ToString();
+
+                    reader.Close();
+                    con.Close();
+                    
+
+                }
+               
+
+            }
+           
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+           void dispose()
+        {
+            SqlConnection con = new SqlConnection(strcon);
+            string squery = "UPDATE [AssetDescription] SET Status='" + DropDownListDStatus.SelectedItem.Text + "', Dispose_Reason='" + TextBoxDRemarks.Text + "' WHERE Asset_ID='"+TextBoxDAID.Text+"'" ;
+            con.Open();
+            SqlCommand com = new SqlCommand(squery, con);
+            com.ExecuteNonQuery();
+            con.Close();
+            Label14.Text = "Disposed Successfully";
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(strcon);
+                string squery = "SELECT TOP 1 * FROM [dbo].[AssetMgmt] WHERE Asset_ID='" + TextBox1.Text + "' ORDER BY Asset_ID DESC ";
+                SqlCommand com = new SqlCommand(squery, con);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                SqlDataReader reader = com.ExecuteReader();
+
+                if (reader.Read())
+
+                {
+                    TextBox3.Text = reader["Employee_ID"].ToString();
+                    Label19.Text = reader["From_Date"].ToString();
+                    Label21.Text = reader["To_Date"].ToString();
+                    TextBox4.Text = reader["Order_ID"].ToString();
+                    reader.Close();
+
+                    con.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+
+        protected void Button3_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection(strcon);
+            string squery = "UPDATE [AssetMgmt] SET Returned_Date=@Returned_Date WHERE Asset_ID='" + TextBox1.Text+ "' AND Order_ID='"+ TextBox4 .Text+ "' ";
+            string squery2 = "UPDATE [AssetDescription] SET Current_Status=@Current_Status WHERE Asset_ID='" + TextBox1.Text + "'";
+            con.Open();
+            SqlCommand com = new SqlCommand(squery, con);
+           
+            com.Parameters.AddWithValue("@Returned_Date", TextBox5.Text.ToString());
+            com.ExecuteNonQuery();
+            SqlCommand com2 = new SqlCommand(squery2, con);
+            com2.Parameters.AddWithValue("@Current_Status", "Available");
+            com2.ExecuteNonQuery();
+            con.Close();
+            Label14.Text = "Updated Successfully";
+            Response.Redirect(Request.Url.AbsoluteUri);
+        }
+
+        protected void GridViewSelAs_DataBound(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void GridViewSelAs_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+          
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                // do your stuffs here, for example if column risk is your third column:
+                if (e.Row.Cells[6].Text == "Requested")
+                {
+                    e.Row.BackColor = Color.Beige;
+                }
+                if (e.Row.Cells[5].Text == "Inactive")
+                {
+                    e.Row.BackColor = Color.Cyan;
+                }
+            }
+        }
+
+        protected void ButtonAdGo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                SqlConnection con = new SqlConnection(strcon);
+                string squery = "SELECT * FROM [dbo].[AssetDescription] WHERE Asset_ID='" + TextBoxAdAssID.Text + "'";
+                SqlCommand com = new SqlCommand(squery, con);
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
+                SqlDataReader reader = com.ExecuteReader();
+
+                if (reader.Read())
+
+                {
+                    
+                    TextBoxSerial.Text = reader["Serial_Number"].ToString();
+                   
+                    TextBoxDes.Text = reader["Description"].ToString();
+                    reader.Close();
+                    con.Close();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Response.Write("<script>alert('" + ex.Message + "');</script>");
+            }
+        }
+
+        protected void ButtonAssUpdate_Click(object sender, EventArgs e)
+        {
+            string filepath = "~/AssetImages/";
+            string filename = Path.GetFileName(FileUploadImg.PostedFile.FileName);
+            if (filename == "" || filename == null)
+            {
+                filepath = global_filepath;
+
+            }
+            else
+            {
+                FileUploadImg.SaveAs(Server.MapPath("AssetImages/" + filename));
+                filepath = "~/AssetImages/" + filename;
+            }
+            string squery= "Update [dbo].[AssetDescription] SET Status=@Status,Serial_Number=@Serial_Number,Category=@Category,Model=@Model,Description=@Description,Imgpath=@Imgpath WHERE Asset_ID='"+ TextBoxAdAssID.Text+ "' ";
+            SqlConnection con = new SqlConnection(strcon);  
+            con.Open();
+            SqlCommand com = new SqlCommand(squery, con);
+            com.Parameters.AddWithValue("@Status", DropDownListStatus.SelectedItem.Text);
+            com.Parameters.AddWithValue("@Serial_Number", TextBoxSerial.Text);
+            com.Parameters.AddWithValue("@Category", DropDownListSelCat3.SelectedItem.Text);
+            com.Parameters.AddWithValue("@Model", DropDownListMod3.SelectedItem.Text);
+            com.Parameters.AddWithValue("@Description", TextBoxDes.Text);
+            com.Parameters.AddWithValue("@Imgpath", filepath);
+           
+        }
     }
+    
+   
+    
     
 }

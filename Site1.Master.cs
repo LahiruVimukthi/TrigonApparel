@@ -110,5 +110,15 @@ namespace TrigonApparel
         {
             Response.Redirect("UserLogin.aspx");
         }
+
+        protected void LinkButtonLogin_Click1(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void LinkButton3_Click1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

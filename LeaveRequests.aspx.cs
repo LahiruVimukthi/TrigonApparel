@@ -13,24 +13,31 @@ namespace TrigonApparel
     public partial class WebForm6 : System.Web.UI.Page
     {
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
+        int dep;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack)
             {
                 GridViewLeaveReq.DataBind();
+                TextBoxEmID.Text = "";
+                TextBoxNam.Text = "";
+                
+
             }
         }
 
         protected void CalendarLeaveReq_SelectionChanged(object sender, EventArgs e)
         {
-            TextBoxLeaveDate.Text = CalendarLeaveReq.SelectedDate.ToShortDateString();
+           
+            string sdates= CalendarLeaveReq.SelectedDate.ToShortDateString();
+            ListBox1.Items.Add(sdates);
         }
 
         protected void ButtonSubmitLeavReq_Click(object sender, EventArgs e)
         {
             submitRequest();
             SubmitLeaveGrid();
-            TextBoxLeaveDate.Text = "";
+            
             TextBoxLeaveDes.Text = "";
             TextBoxLeaveEmpID.Text = "";
             CheckBoxLeaveReq.Checked = false;
@@ -40,8 +47,6 @@ namespace TrigonApparel
             try
             {
                 string aprvstatus = string.Empty;
-
-
                 if (CheckBoxLeaveReq.Checked)
                 {
                     aprvstatus = "Pending";
@@ -50,21 +55,52 @@ namespace TrigonApparel
                 {
                     Response.Write("<script>alert('Please tick the checkbox');</script>");
                 }
-                string squery = "INSERT INTO [dbo].Leaves(Employee_ID,Req_Date,Req_Description,Req_Status) VALUES (@Employee_ID,@Req_Date,@Req_Description,@Req_Status)";
-                SqlConnection con = new SqlConnection(strcon);
-                if (con.State == ConnectionState.Closed)
-                {
-                    con.Open();
-                }
-                SqlCommand cmd = new SqlCommand(squery, con);
-                cmd.Parameters.AddWithValue("Employee_ID", TextBoxLeaveEmpID.Text.Trim());
-                cmd.Parameters.AddWithValue("Req_Date", CalendarLeaveReq.SelectedDate.ToString("yyyy/MM/dd"));
-                cmd.Parameters.AddWithValue("Req_Description", TextBoxLeaveDes.Text.Trim());
-                cmd.Parameters.AddWithValue("Req_Status", aprvstatus);
-                cmd.ExecuteNonQuery();
+                if (Page.IsPostBack) {
+                    foreach (ListItem row in ListBox1.Items)
+                    {
+                        string sdates = row.Value;
+                        row.Selected = true;
+                        string squery = "INSERT INTO [dbo].Leaves(Employee_ID,Req_Date,Req_Description,Req_Status,Dep_ID) VALUES (@Employee_ID,@Req_Date,@Req_Description,@Req_Status,@Dep_ID)";
+                        SqlConnection con = new SqlConnection(strcon);
+                        if (con.State == ConnectionState.Closed)
+                        {
+                            con.Open();
+                        }
+                        if (TextBoxDep.Text == "Finishing")
+                        {
+                            dep = 3;
+                        }
+                        else if (TextBoxDep.Text == "Cutting")
+                        {
+                            dep = 1;
+                        }
+                        else
+                        {
+                            dep = 2;
+                        }
+                        SqlCommand cmd = new SqlCommand(squery, con);
+                        cmd.Parameters.AddWithValue("Employee_ID", TextBoxLeaveEmpID.Text.Trim());
+                        cmd.Parameters.AddWithValue("Req_Date", sdates);
+                        cmd.Parameters.AddWithValue("Req_Description", TextBoxLeaveDes.Text.Trim());
+                        cmd.Parameters.AddWithValue("Req_Status", aprvstatus);
+                        cmd.Parameters.AddWithValue("Dep_ID", dep);
+                        cmd.ExecuteNonQuery();
 
-                con.Close();
-                Response.Write("<script>alert('request Successful');</script>");
+                        con.Close();
+                        
+
+                    }
+                    Response.Write("<script>alert('request Successful');</script>");
+                    
+                    TextBoxEmID.Text = "";
+                    TextBoxNam.Text = "";
+                    ListBox1.Items.Clear();
+                }
+                    
+              
+
+               
+
             }
             catch (Exception ex)
             {
@@ -103,13 +139,13 @@ namespace TrigonApparel
         {
           
             SqlConnection con = new SqlConnection(strcon);
-            SqlCommand cmd = new SqlCommand("Select * from Leaves where Employee_ID='" + TextBoxLeaveEmpID.Text + "' AND Req_Status='Approved'",con);
+            SqlCommand cmd = new SqlCommand("Select * from Leaves where MONTH(Req_Date)='"+DateTime.Now.Month+"' AND Employee_ID='" + TextBoxLeaveEmpID.Text + "' AND Req_Status='Approved'",con);
             SqlDataAdapter ap = new SqlDataAdapter(cmd.CommandText, con);
             con.Open();
             DataSet ds = new DataSet();
             ap.Fill(ds);
-            LabelAvaDates.Text="Leaves Taken: "+ds.Tables[0].Rows.Count.ToString();
-           
+            LabelAvaDates.Text="Leaves Taken on " + DateTime.Now.ToString("MMMM")+":" + ds.Tables[0].Rows.Count.ToString();
+          
 
             con.Close();
         }
@@ -117,12 +153,12 @@ namespace TrigonApparel
         {
 
             SqlConnection con = new SqlConnection(strcon);
-            SqlCommand cmd = new SqlCommand("Select * from Leaves where Employee_ID='" + TextBoxLeaveEmpID.Text + "' AND Req_Status='Pending'",con);
+            SqlCommand cmd = new SqlCommand("Select * from Leaves where MONTH(Req_Date)='" + DateTime.Now.Month + "' AND Employee_ID='" + TextBoxLeaveEmpID.Text + "' AND Req_Status='Pending'",con);
             SqlDataAdapter ap = new SqlDataAdapter(cmd.CommandText, con);
             con.Open();
             DataSet ds = new DataSet();
             ap.Fill(ds);
-            LabelPendingDates.Text = "Pending: " + ds.Tables[0].Rows.Count.ToString();
+            LabelPendingDates.Text = "Pending Leaves for "+ DateTime.Now.ToString("MMMM")+":" + ds.Tables[0].Rows.Count.ToString();
 
 
             con.Close();
@@ -182,6 +218,7 @@ namespace TrigonApparel
             LoadEmpName();
             GetApprovedLeaves();
             GetPendingLeaves();
+            AssetHistory();
         }
 
         protected void ButtonHDLoad_Click(object sender, EventArgs e)
@@ -283,5 +320,21 @@ namespace TrigonApparel
                     Response.Write("<script>alert('" + ex.Message + "');</script>");
                 }
             }
+        void AssetHistory()
+        {
+            string squery = "SELECT Req_Date,Req_Status,Req_Description from [dbo].[Leaves] WHERE Employee_ID='"+ TextBoxLeaveEmpID .Text+ "'";
+            SqlConnection con = new SqlConnection(strcon);
+            SqlCommand com = new SqlCommand(squery, con);
+            if (con.State == ConnectionState.Closed)
+            {
+                con.Open();
+            }
+            SqlDataAdapter sda = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+            sda.Fill(dt);
+
+            GridViewLeaveHis.DataSource = dt;
+            GridViewLeaveHis.DataBind();
+        }
     }
 }

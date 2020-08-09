@@ -48,9 +48,10 @@ namespace TrigonApparel
             {
                 CheckBox status = (row.Cells[3].FindControl("CheckBoxSelectReq") as CheckBox);
                 string EmployeeID =(row.Cells[1].Text);
+                string date= (row.Cells[4].Text);
                 if (status.Checked)
                 {
-                    updaterow(EmployeeID, "Approved");
+                    updaterow(EmployeeID, "Approved",date);
                     
                     Label2.Text = V;
 
@@ -62,13 +63,13 @@ namespace TrigonApparel
 
 
             }
-            void updaterow(string EmployeeID, string Req_Status)
+            void updaterow(string EmployeeID, string Req_Status, string date)
             {
                 try
                 {
 
                     SqlConnection con = new SqlConnection(strcon);
-                    string squery = "UPDATE dbo.[Leaves] set Req_Status='" + Req_Status + "' where Employee_ID='" + EmployeeID + "'";
+                    string squery = "UPDATE dbo.[Leaves] set Req_Status='" + Req_Status + "' where Employee_ID='" + EmployeeID + "'AND Req_Date='"+ date + "'";
                     if (con.State == ConnectionState.Closed)
                     {
                         con.Open();

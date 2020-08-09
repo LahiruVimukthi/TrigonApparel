@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace TrigonApparel
 {
-    public partial class WebForm11 : System.Web.UI.Page
+    public partial class WebForm16 : System.Web.UI.Page
     {
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void ButtonLogin_Click(object sender, EventArgs e)
@@ -24,7 +24,7 @@ namespace TrigonApparel
             {
 
                 SqlConnection con = new SqlConnection(strcon);
-                string squery = "SELECT * from User_Registrations WHERE Employee_ID='" + TextBoxEmpID.Text + "' ";
+                string squery = "SELECT * from Admin_Login WHERE AD_Username='" + TextBoxAdID.Text + "' AND AD_Password='"+TextBoxAdPW.Text+"' ";
                 if (con.State == ConnectionState.Closed)
                 {
                     con.Open();
@@ -39,12 +39,12 @@ namespace TrigonApparel
                 {
                     while (dr.Read())
                     {
-                        Session["Username"] = dr.GetValue(3).ToString();
-                        Session["role"] = "Employee";
-                        Session["Status"] = dr.GetValue(20).ToString();
+                        Session["Admin"] = dr.GetValue(0).ToString();
+                        Session["role"] = "Admin";
+                       
 
                     }
-                    Response.Redirect("EmployeeProfile.aspx");
+                    Response.Redirect("UserRegistration.aspx");
                 }
                 else
                 {

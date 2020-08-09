@@ -13,9 +13,9 @@
      <div class="row">
           <div class="col-lg-8">
             <div class="card text-black bg-light mb-3">
-                <div class="card-header">Approvals</div>
+                <div class="card-header" style="background-color: #16a085; color: #FFFFFF; font-size: medium; font-weight: bold; font-family: Arial, Helvetica, sans-serif">To be Approved</div>
                 <div class="card-body">
-                    <asp:GridView Class="table" ID="GridViewApproveLeave" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource4" OnSelectedIndexChanged="GridViewApproveLeave_SelectedIndexChanged" Font-Size="Medium" HorizontalAlign="Justify" CellPadding="4" ForeColor="#333333" GridLines="None">
+                    <asp:GridView Class="table" ID="GridViewApproveLeave" runat="server" AutoGenerateColumns="False" DataSourceID="SqlDataSource4" OnSelectedIndexChanged="GridViewApproveLeave_SelectedIndexChanged" Font-Size="Small" HorizontalAlign="Justify" CellPadding="4" ForeColor="#333333" GridLines="None">
                         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                         <Columns>
                             <asp:TemplateField HeaderText="Select">
@@ -95,7 +95,7 @@
             
             <div class="row">
             <div class="card">
-                <div class="card-header">Check Availability</div>
+                <div class="card-header" style="background-color: #16a085; color: #FFFFFF; font-size: medium; font-weight: bold; font-family: Arial, Helvetica, sans-serif">Check Availability</div>
                     <div class="card-body">
                         <div class="row">
                 <div class="form-group form-inline">
@@ -137,12 +137,13 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-11">
+        <div class="col-lg-10">
             <div class="card">
-                <div class="card-header">Daily Department Summary</div><br />
+                <div class="card-header" style="background-color: #16a085; color: #FFFFFF; font-size: medium; font-weight: bold; font-family: Arial, Helvetica, sans-serif">Daily Department Summary</div><br />
                 <div class="body">
-                  
-                        <div class="row">
+                    <div class="row">
+                             <div class="col-lg-12">
+                                          <div class="row">
                             <div class="col-lg-3">
                               <div class="form-group">
                                 <asp:Label ID="LabelDep" runat="server" Text="Select Department: "></asp:Label>
@@ -162,9 +163,7 @@
                     </div>
                                 </div>
                             </div>
-                            
-                       
-                             <div class="row">
+                       <div class="row">
                                  <div class="col-lg-3">
                              <div class="form-group">
                                 <asp:Label ID="LabelTot" runat="server" Font-Bold="True" Font-Size="Medium" ForeColor="#006600"></asp:Label>                      
@@ -176,6 +175,13 @@
                                 </div>
                                      </div>
                              </div>
+                  </div>
+                    </div>
+             
+    
+                            
+                       
+                            
                             
                         </div>
                 </div>

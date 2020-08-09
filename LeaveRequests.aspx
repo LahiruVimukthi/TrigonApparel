@@ -7,15 +7,27 @@
    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
-    <br />
+    <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+             <div class="row">
+        <div class="col-lg-12">
+             <div class="card-body" style="background-color: #ecf0f1; font-family: Arial, Helvetica, sans-serif; font-size: medium; font-weight: bold">
+            <asp:Label ID="Label3" runat="server" Text="Full Day/Half Day Leave Requests"></asp:Label>
+        </div>
+        </div>
+       
+    </div>
+   
     <div class="row">
        
       <div class="col-lg-6">
             <div class="card">
-                <div class="card-header">Request Form</div>
-                <div class="card-body">
-                    <h4>Full Day Leaves</h4>
+                <center>
+                <div class="card-header" style="font-family: Arial, Helvetica, sans-serif; font-size: medium; background-color: #16a085; color: #FFFFFF; font-weight: bold">Full Day Leaves</div>
+                </center>
+                    <div class="card-body">
+                   
                     <div class="row">
                         
                         <div class="col-lg-3">
@@ -44,23 +56,44 @@
                        
                         </div>
                        
-                        <div class="row">                        
-                        <div class="col-lg-3">
+                        <div class="row" font-family: Arial, Helvetica, sans-serif; font-size: small; font-weight: bold">                        
+                        <div class="col-lg-6">
                             <div class="form-group">
-                                <asp:Label ID="LabelAvaDates" runat="server" ForeColor="#009900"></asp:Label>                               
+                                <asp:Label ID="LabelAvaDates" runat="server" ForeColor="#990033" Font-Size="Medium"></asp:Label>                               
                         </div>
                             </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-6">
                             <div class="form-group">
-                                <asp:Label ID="LabelPendingDates" runat="server" ForeColor="#CC0000"></asp:Label>                               
+                                <asp:Label ID="LabelPendingDates" runat="server" ForeColor="#990033" Font-Size="Medium"></asp:Label>                               
                         </div>
                             </div>
                         </div>
+                    <div class="row">
+                        <br />
+                        <div class="col-lg-12">
+                            <asp:GridView ID="GridViewLeaveHis" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" Font-Size="Small" ForeColor="Black" GridLines="Vertical">
+                                <AlternatingRowStyle BackColor="#CCCCCC" />
+                                <Columns>
+                                    <asp:BoundField HeaderText="Date" DataField="Req_Date" DataFormatString="{0:MM/dd/yyyy}" />
+                                    <asp:BoundField HeaderText="Status" DataField="Req_Status" />
+                                    <asp:BoundField HeaderText="Reason" DataField="Req_Description" />
+                                </Columns>
+                                <FooterStyle BackColor="#CCCCCC" />
+                                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                                <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                                <SelectedRowStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
+                                <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                <SortedAscendingHeaderStyle BackColor="#808080" />
+                                <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                <SortedDescendingHeaderStyle BackColor="#383838" />
+                            </asp:GridView>
+                        </div>
+                    </div>
                         <div class="row">
                             <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="LeaveDate">Select Date:</label>
-                                <asp:TextBox ID="TextBoxLeaveDate" runat="server" CssClass="form-control form-control-sm" OnTextChanged="TextBoxLeaveDate_TextChanged"></asp:TextBox>
+                                <asp:ListBox ID="ListBox1" runat="server" SelectionMode="Multiple" CssClass="form-control form-control-sm"></asp:ListBox>
                             </div>
                                 </div>
                             <div class="col-lg-3">
@@ -82,7 +115,14 @@
                         </div>
                     <div class="row">
                         <div class="col-lg-2">
-                            <asp:Calendar ID="CalendarLeaveReq" runat="server" OnSelectionChanged="CalendarLeaveReq_SelectionChanged" Width="207px" SelectionMode="DayWeek" Height="200px"></asp:Calendar>
+                            <asp:Calendar ID="CalendarLeaveReq" runat="server" OnSelectionChanged="CalendarLeaveReq_SelectionChanged" Width="350px" SelectionMode="DayWeek" Height="190px" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" NextPrevFormat="FullMonth">
+                                <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                                <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                                <OtherMonthDayStyle ForeColor="#999999" />
+                                <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                                <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                                <TodayDayStyle BackColor="#CCCCCC" />
+                            </asp:Calendar>
                         </div>
                                                   
                     </div>
@@ -90,16 +130,16 @@
                             
                            
                         
-                        </div>
-                        </div>
+                       </div>
+                       </div>
          </div>
          
 
      <div class="col-lg-6">
             <div class="card">
-                <div class="card-header">Request Form</div>
+                <div class="card-header" style="font-family: Arial, Helvetica, sans-serif; font-size: medium; background-color: #16a085; color: #FFFFFF; font-weight: bold">Half Day Leaves</div>
                 <div class="card-body">
-                    <h4>Half Day Leaves</h4>
+                 
                     <div class="row">
                         
                         <div class="col-lg-3">
@@ -183,7 +223,14 @@
                         
                     <div class="row">
                         <div class="col-lg-2">
-                            <asp:Calendar ID="Calendar1" runat="server"  Width="207px" SelectionMode="DayWeek" Height="200px" OnSelectionChanged="Calendar1_SelectionChanged"></asp:Calendar>
+                            <asp:Calendar ID="Calendar1" runat="server"  Width="350px" SelectionMode="DayWeek" Height="190px" OnSelectionChanged="Calendar1_SelectionChanged" BackColor="White" BorderColor="White" BorderWidth="1px" Font-Names="Verdana" Font-Size="9pt" ForeColor="Black" NextPrevFormat="FullMonth">
+                                <DayHeaderStyle Font-Bold="True" Font-Size="8pt" />
+                                <NextPrevStyle Font-Bold="True" Font-Size="8pt" ForeColor="#333333" VerticalAlign="Bottom" />
+                                <OtherMonthDayStyle ForeColor="#999999" />
+                                <SelectedDayStyle BackColor="#333399" ForeColor="White" />
+                                <TitleStyle BackColor="White" BorderColor="Black" BorderWidth="4px" Font-Bold="True" Font-Size="12pt" ForeColor="#333399" />
+                                <TodayDayStyle BackColor="#CCCCCC" />
+                            </asp:Calendar>
                         </div>
                                                   
                     </div>
@@ -195,6 +242,9 @@
                         </div>
                         </div>
          </div>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+   
        
       
    <!-- <div class="row">
