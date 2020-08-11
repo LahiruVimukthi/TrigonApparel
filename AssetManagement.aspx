@@ -43,6 +43,63 @@
                          <div id="Asset" class="container tab-pane">
                              <br />
                              <div class="row">
+                                 
+                             <div class="col-lg-6">
+                                     <asp:Panel ID="Panel2" runat="server" >
+                       <asp:GridView class="table" ID="GridViewStock" runat="server" AutoGenerateColumns="False" DataKeyNames="Asset_ID" DataSourceID="SqlDataSource7" Font-Size="Small" >
+
+                            <Columns>
+                                <asp:BoundField DataField="Asset_ID" HeaderText="Asset_ID" InsertVisible="False" ReadOnly="True" SortExpression="Asset_ID" />
+                                
+                                <asp:TemplateField>
+                                    <ItemTemplate>
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col-lg-10">
+                                                   <div class="row">
+                                                       <div class="col-lg-12">
+                                                           <asp:Label ID="Label24" runat="server" Text='<%# Eval("Model") %>' Font-Bold="True" Font-Names="Arial" Font-Size="Medium" ForeColor="#003366"></asp:Label>
+                                                           &nbsp;|
+                                                           <asp:Label ID="Label25" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Medium" ForeColor="#003366" Text='<%# Eval("Category") %>'></asp:Label>
+                                                       </div>
+                                                   </div>
+                                                    <div class="row">
+                                                       <div class="col-lg-12" style="font-family: Arial, Helvetica, sans-serif; font-size: small">
+
+                                                           &nbsp;<asp:Label ID="Label26" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small" Text='<%# Eval("Status") %>'></asp:Label>
+                                                           &nbsp;| Current Status-<asp:Label ID="Label27" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small" Text='<%# Eval("Current_Status") %>'></asp:Label>
+
+                                                       </div>
+                                                   </div>
+                                                    <div class="row">
+                                                       <div class="col-lg-12" style="font-family: Arial, Helvetica, sans-serif; font-size: small">
+
+                                                           Serial/Batch Number-<asp:Label ID="Label28" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small" Text='<%# Eval("Serial_Number") %>'></asp:Label>
+                                                           &nbsp;|</div>
+                                                   </div>
+                                                    <div class="row">
+                                                       <div class="col-lg-12" style="font-family: Arial, Helvetica, sans-serif; font-size: small">
+
+                                                           Description-
+                                                           <asp:Label ID="Label29" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small" Text='<%# Eval("Description") %>'></asp:Label>
+
+                                                       </div>
+                                                   </div>
+                                                </div>
+                                                <div class="col-lg-02">
+                                                    <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Imgpath") %>' />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ItemTemplate>
+                                    
+                                </asp:TemplateField>
+                                
+                            </Columns>
+
+                        </asp:GridView>  
+                      </asp:Panel>
+                             </div>
                                  <div class="col-lg-06">
                                      <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                              <ContentTemplate>
@@ -171,62 +228,6 @@
                              </ContentTemplate>
                           </asp:UpdatePanel>
                              </div>
-                             <div class="col-lg-6">
-                                     <asp:Panel ID="Panel2" runat="server" >
-                       <asp:GridView class="table" ID="GridViewStock" runat="server" AutoGenerateColumns="False" DataKeyNames="Asset_ID" DataSourceID="SqlDataSource7" Font-Size="Small" >
-
-                            <Columns>
-                                <asp:BoundField DataField="Asset_ID" HeaderText="Asset_ID" InsertVisible="False" ReadOnly="True" SortExpression="Asset_ID" />
-                                
-                                <asp:TemplateField>
-                                    <ItemTemplate>
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col-lg-10">
-                                                   <div class="row">
-                                                       <div class="col-lg-12">
-                                                           <asp:Label ID="Label24" runat="server" Text='<%# Eval("Model") %>' Font-Bold="True" Font-Names="Arial" Font-Size="Medium" ForeColor="#003366"></asp:Label>
-                                                           &nbsp;|
-                                                           <asp:Label ID="Label25" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Medium" ForeColor="#003366" Text='<%# Eval("Category") %>'></asp:Label>
-                                                       </div>
-                                                   </div>
-                                                    <div class="row">
-                                                       <div class="col-lg-12" style="font-family: Arial, Helvetica, sans-serif; font-size: small">
-
-                                                           &nbsp;<asp:Label ID="Label26" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small" Text='<%# Eval("Status") %>'></asp:Label>
-                                                           &nbsp;| Current Status-<asp:Label ID="Label27" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small" Text='<%# Eval("Current_Status") %>'></asp:Label>
-
-                                                       </div>
-                                                   </div>
-                                                    <div class="row">
-                                                       <div class="col-lg-12" style="font-family: Arial, Helvetica, sans-serif; font-size: small">
-
-                                                           Serial/Batch Number-<asp:Label ID="Label28" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small" Text='<%# Eval("Serial_Number") %>'></asp:Label>
-                                                           &nbsp;|</div>
-                                                   </div>
-                                                    <div class="row">
-                                                       <div class="col-lg-12" style="font-family: Arial, Helvetica, sans-serif; font-size: small">
-
-                                                           Description-
-                                                           <asp:Label ID="Label29" runat="server" Font-Bold="True" Font-Names="Arial" Font-Size="Small" Text='<%# Eval("Description") %>'></asp:Label>
-
-                                                       </div>
-                                                   </div>
-                                                </div>
-                                                <div class="col-lg-02">
-                                                    <asp:Image ID="Image1" runat="server" ImageUrl='<%# Eval("Imgpath") %>' />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ItemTemplate>
-                                    
-                                </asp:TemplateField>
-                                
-                            </Columns>
-
-                        </asp:GridView>  
-                      </asp:Panel>
-                             </div>
                             </div>           
               </div> 
                                     <!--Requests-->
@@ -294,7 +295,7 @@
                                    </div>
                                        <div class="row">
                                            <div class="col-lg-10">
-                                          <asp:GridView ID="GridViewSelAs" class="table" runat="server" AutoGenerateColumns="False" DataKeyNames="Asset_ID" DataSourceID="SqlDataSource2" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" Font-Size="Small" OnDataBound="GridViewSelAs_DataBound" OnRowDataBound="GridViewSelAs_RowDataBound">
+                                          <asp:GridView ID="GridViewSelAs" class="table" runat="server" AutoGenerateColumns="False" DataKeyNames="Asset_ID" DataSourceID="SqlDataSource2" BackColor="White" BorderColor="#336666" BorderStyle="Double" BorderWidth="3px" CellPadding="4" GridLines="Horizontal" Font-Size="Small" OnDataBound="GridViewSelAs_DataBound" OnRowDataBound="GridViewSelAs_RowDataBound" PagerSettings-FirstPageText="First" PagerSettings-LastPageText="Last" PagerSettings-Mode="NextPreviousFirstLast" OnPageIndexChanging="GridViewSelAs_PageIndexChanging">
                            <Columns>
                                <asp:TemplateField HeaderText="Select">
                                    <ItemTemplate>

@@ -18,8 +18,11 @@ namespace TrigonApparel
         string strcon = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            TextBoxMonth.Text = DateTime.Today.Date.ToString("yyyy-MM-dd");
-            TextBoxPerDate.Text = DateTime.Now.ToString("MMMM");
+            if (!IsPostBack)
+            {
+                TextBoxPerDate.Text = DateTime.Now.ToString("MMMM");
+            }
+          
         }
   
         void populatework()
@@ -170,8 +173,10 @@ namespace TrigonApparel
         {
             try
             {
-                string squery = "INSERT INTO [dbo].[Performance] (Employee_ID,Target,Finished,Defects,DFU,Date) VALUES (@Employee_ID,@Target,@Finished,@Defects,@DFU,@Date)";
+                string squery = "INSERT INTO [dbo].[Performance] (Employee_ID,Target,Finished,Defects,DFU,Date,Dep_ID) VALUES (@Employee_ID,@Target,@Finished,@Defects,@DFU,@Date,@Dep_ID)";
                 SqlConnection con = new SqlConnection(strcon);
+                string date = TextBoxMonth.Text.ToString();
+                int depID=int.Parse(DropDownListDept.SelectedItem.Value);
                 foreach (GridViewRow gvrow in GridViewAddSkills.Rows)
                 {
                     
@@ -186,7 +191,8 @@ namespace TrigonApparel
                     cmd.Parameters.AddWithValue("@Finished",int.Parse( gvrow.Cells[2].Text));
                     cmd.Parameters.AddWithValue("@Defects", int.Parse(gvrow.Cells[3].Text));
                     cmd.Parameters.AddWithValue("@DFU", double.Parse(gvrow.Cells[4].Text));
-                    cmd.Parameters.AddWithValue("@Date",DateTime.Today.ToString());
+                    cmd.Parameters.AddWithValue("@Date", date);
+                    cmd.Parameters.AddWithValue("@Dep_ID", depID);
                     cmd.ExecuteNonQuery();
                     con.Close();
                     Label5.Text = "Successfully Saved";
@@ -251,8 +257,9 @@ namespace TrigonApparel
                 SqlConnection con = new SqlConnection(strcon);
                 foreach (GridViewRow gvrow in GridViewSavebeh.Rows)
                 {
-                    string squery = "UPDATE [dbo].[Performance] SET Appearance=@Appearance,Safety=@Safety,TrainingImp=@TrainingImp,BehTotal=@BehTotal WHERE Employee_ID='" + gvrow.Cells[0].Text+"' AND Date='"+ DateTime.Today.ToString() + "'";
-
+                    string date = TextBoxMonth.Text.ToString();
+                    string squery = "UPDATE [dbo].[Performance] SET Appearance=@Appearance,Safety=@Safety,TrainingImp=@TrainingImp,BehTotal=@BehTotal,Dep_ID=@Dep_ID WHERE Employee_ID='" + gvrow.Cells[0].Text+"' AND Date='"+ date + "'";
+                    int depID = int.Parse(DropDownListDept.SelectedItem.Value);
                     if (con.State == ConnectionState.Closed)
                     {
                         con.Open();
@@ -262,7 +269,7 @@ namespace TrigonApparel
                     cmd.Parameters.AddWithValue("@Safety", int.Parse(gvrow.Cells[2].Text));
                     cmd.Parameters.AddWithValue("@TrainingImp", int.Parse(gvrow.Cells[3].Text));
                     cmd.Parameters.AddWithValue("@BehTotal", int.Parse(gvrow.Cells[4].Text));
-                    
+                    cmd.Parameters.AddWithValue("@Dep_ID", depID);
                     cmd.ExecuteNonQuery();
                    
                     con.Close();
@@ -329,9 +336,12 @@ namespace TrigonApparel
             try
             {
                 SqlConnection con = new SqlConnection(strcon);
+                int depID = int.Parse(DropDownListDept.SelectedItem.Value);
+                string date = TextBoxMonth.Text.ToString();
+
                 foreach (GridViewRow gvrow in GridViewSkills.Rows)
                 {
-                    string squery = "UPDATE [dbo].[Performance] SET Communication=@Communication,Teamwork=@Teamwork,DecisionMaking=@DecisionMaking,JobKnow=@JobKnow,Leadership=@Leadership ,SkillTotal=@SkillTotal WHERE Employee_ID='" + gvrow.Cells[0].Text + "' AND Date='" + DateTime.Today.ToString() + "'";
+                    string squery = "UPDATE [dbo].[Performance] SET Communication=@Communication,Teamwork=@Teamwork,DecisionMaking=@DecisionMaking,JobKnow=@JobKnow,Leadership=@Leadership ,SkillTotal=@SkillTotal,Dep_ID=@Dep_ID WHERE Employee_ID='" + gvrow.Cells[0].Text + "' AND Date='" + date + "'";
 
                     if (con.State == ConnectionState.Closed)
                     {
@@ -344,6 +354,7 @@ namespace TrigonApparel
                     cmd.Parameters.AddWithValue("@JobKnow", int.Parse(gvrow.Cells[4].Text));
                     cmd.Parameters.AddWithValue("@Leadership", int.Parse(gvrow.Cells[5].Text));
                     cmd.Parameters.AddWithValue("@SkillTotal", double.Parse(gvrow.Cells[6].Text));
+                    cmd.Parameters.AddWithValue("@Dep_ID",depID);
                     cmd.ExecuteNonQuery();
                     
                     con.Close();
@@ -361,7 +372,11 @@ namespace TrigonApparel
 
 
         }
-           
-}
+
+        protected void Button9_Click(object sender, EventArgs e)
+        {
+            PanelBeh.Visible = false;
+        }
+    }
    
 }

@@ -13,8 +13,10 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="card">
-                <div class="card-body" style="background-color: #95a5a6; color: #000000; font-size: large; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif">
-                    <asp:Label ID="Label6" runat="server" Text="Performance Assessment Scheme- TRIGON Apparel(Administration Use Only)"></asp:Label>
+                <div class="card-body" style="background-color: #706fd3; color: #FFFFFF; font-size: large; font-weight: bold; font-family: Arial, Helvetica, sans-serif">
+                    <center>
+                    <asp:Label ID="Label6" runat="server" Text="Performance Assessment Scheme"></asp:Label>
+                    </center>
                 </div>
             </div>
         </div>
@@ -22,8 +24,8 @@
      <div class="row">
      <div class="col-lg-3">
          <div class="form-group">
-             <asp:Label ID="LabelMonth" runat="server" Text="Date" Font-Bold="True" Font-Size="Medium"></asp:Label>
-             <asp:TextBox ID="TextBoxMonth" runat="server" class="form-control form-control-sm"></asp:TextBox>
+             <asp:Label ID="LabelMonth" runat="server" Text="Date" Font-Bold="True" Font-Size="Medium" ></asp:Label>
+             <asp:TextBox ID="TextBoxMonth" runat="server" class="form-control form-control-sm" TextMode="Date"></asp:TextBox>
          </div>
          </div>
      <div class="col-lg-3">
@@ -74,31 +76,31 @@
                       <asp:BoundField HeaderText="Name" DataField="F_Name"/>
                       <asp:TemplateField HeaderText="Communication">
                          <ItemTemplate>
-                             <asp:DropDownList ID="DropDownListCom" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex"></asp:DropDownList>
+                             <asp:DropDownList ID="DropDownListCom" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex" class="form-control form-control-sm"></asp:DropDownList>
                              <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT * FROM [Apraisalindex]"></asp:SqlDataSource>
                          </ItemTemplate>
                       </asp:TemplateField>
                        <asp:TemplateField HeaderText="Decision Making">
                          <ItemTemplate>
-                             <asp:DropDownList ID="DropDownListDes" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex"></asp:DropDownList>
+                             <asp:DropDownList ID="DropDownListDes" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex" class="form-control form-control-sm"></asp:DropDownList>
                             
                          </ItemTemplate>
                       </asp:TemplateField>
                       <asp:TemplateField HeaderText="Teamwork">
                          <ItemTemplate>
-                             <asp:DropDownList ID="DropDownListteam" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex"></asp:DropDownList>
+                             <asp:DropDownList ID="DropDownListteam" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex" class="form-control form-control-sm"></asp:DropDownList>
                             
                          </ItemTemplate>
                       </asp:TemplateField>
                       <asp:TemplateField HeaderText="Job Knowledge">
                          <ItemTemplate>
-                             <asp:DropDownList ID="DropDownListJK" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex"></asp:DropDownList>
+                             <asp:DropDownList ID="DropDownListJK" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex" class="form-control form-control-sm"></asp:DropDownList>
                             
                          </ItemTemplate>
                       </asp:TemplateField>
                       <asp:TemplateField HeaderText="Leadership">
                          <ItemTemplate>
-                             <asp:DropDownList ID="DropDownListLead" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex"></asp:DropDownList>
+                             <asp:DropDownList ID="DropDownListLead" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex" class="form-control form-control-sm"></asp:DropDownList>
                             
                          </ItemTemplate>
                       </asp:TemplateField>
@@ -164,13 +166,16 @@
                           </div>
                                <br />
                           <div class="row">
-                              <div class="col-lg-4">
+                              <div class="col-lg-2">
                                    <asp:Button ID="Button5" runat="server" Text="View" OnClick="Button5_Click" class="btn btn-info btn-sm"/>
                               </div>
-                              <div class="col-lg-4">
+                              <div class="col-lg-3">
                               <asp:Button ID="Button6" runat="server" Text="Save" OnClick="Button6_Click" class="btn btn-success btn-sm"/>
                           </div>
-                              <div class="col-lg-4">
+                               <div class="col-lg-2">
+                              <asp:Button ID="Button7" runat="server" Text="Save" class="btn btn-success btn-sm"/>
+                          </div>
+                              <div class="col-lg-5">
                                   <asp:Label ID="Label3" runat="server"></asp:Label>
                               </div>
                               </div>
@@ -184,7 +189,7 @@
                    
                      
                   </asp:Panel>
-           <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender3" runat="server" PopupControlID="PanelSkill" TargetControlID="Button1" BackgroundCssClass="modalBackground" CancelControlID="CloseSkill" ></ajaxToolkit:ModalPopupExtender>
+           <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender3" runat="server" PopupControlID="PanelSkill" TargetControlID="Button1" BackgroundCssClass="modalBackground" CancelControlID="Button7" ></ajaxToolkit:ModalPopupExtender>
       </div>
   </div>
   
@@ -238,11 +243,7 @@
           <div class="col-lg-2">
               <asp:Button ID="AddSkill" runat="server" Text="Add" class="btn btn-success btn-sm" OnClick="Unnamed_Click"/>
           </div>
-          <div class="col-lg-4">
-              
-                 <iframe width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=6db3e76b-f235-4ad7-b700-6eadefe49eaa&autoAuth=true&ctid=aa232db2-7a78-4414-a529-33db9124cba7&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWVhc3QtYXNpYS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
-            
-          </div>
+          
        </div>
       <div class="row">       
           
@@ -295,15 +296,18 @@
                           </div>
                                <br />
                           <div class="row">
-                              <div class="col-lg-4">
+                              <div class="col-lg-2">
                                    <asp:Button ID="ButtonAdd" runat="server" Text="View" OnClick="ButtonAdd_Click" class="btn btn-info btn-sm"/>
                               </div>
-                              <div class="col-lg-4">
+                              <div class="col-lg-2">
                               <asp:Button ID="Buttonsaveskill" runat="server" Text="Save" OnClick="Buttonsaveskill_Click" class="btn btn-success btn-sm"/>
                           </div>
-                               <div class="col-lg-4">
+                               <div class="col-lg-2">
                                   <asp:Label ID="Label4" runat="server"></asp:Label>
                               </div>
+                              <div class="col-lg-6">
+                              <asp:Button ID="Button8" runat="server" Text="Save" class="btn btn-success btn-sm"/>
+                          </div>
                               </div>
                          
                       </div>
@@ -315,7 +319,7 @@
                    
                      
                   </asp:Panel>
-           <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="Panel1" TargetControlID="AddSkill" BackgroundCssClass="modalBackground" CancelControlID="Closepanel" ></ajaxToolkit:ModalPopupExtender>
+           <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender1" runat="server" PopupControlID="Panel1" TargetControlID="AddSkill" BackgroundCssClass="modalBackground" CancelControlID="Button8" ></ajaxToolkit:ModalPopupExtender>
              
       </div>
 
@@ -337,19 +341,19 @@
                       <asp:BoundField HeaderText="Name" DataField="F_Name"/>
                       <asp:TemplateField HeaderText="Appearance">
                          <ItemTemplate>
-                             <asp:DropDownList ID="DropDownListApp" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex"></asp:DropDownList>
+                             <asp:DropDownList ID="DropDownListApp" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex" class="form-control form-control-sm"></asp:DropDownList>
                              <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT * FROM [Apraisalindex]"></asp:SqlDataSource>
                          </ItemTemplate>
                       </asp:TemplateField>
                        <asp:TemplateField HeaderText="Safety">
                          <ItemTemplate>
-                             <asp:DropDownList ID="DropDownListSafe" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex"></asp:DropDownList>
+                             <asp:DropDownList ID="DropDownListSafe" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex" class="form-control form-control-sm"></asp:DropDownList>
                             
                          </ItemTemplate>
                       </asp:TemplateField>
                       <asp:TemplateField HeaderText="Training Implementation">
                          <ItemTemplate>
-                             <asp:DropDownList ID="DropDownListTrI" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex"></asp:DropDownList>
+                             <asp:DropDownList ID="DropDownListTrI" runat="server" DataSourceID="SqlDataSource1" DataTextField="AppraisalParameter" DataValueField="AppraisalIndex" class="form-control form-control-sm"></asp:DropDownList>
                             
                          </ItemTemplate>
                       </asp:TemplateField>
@@ -411,16 +415,20 @@
                           </div>
                                <br />
                           <div class="row">
-                              <div class="col=lg-4">
+                              <div class="col-lg-2">
                                    <asp:Button ID="Button3" runat="server" Text="View" OnClick="Button3_Click" class="btn btn-info btn-sm"/>
                               </div>
-                              <div class="col=lg-4">
+                              <div class="col-lg-2">
                               <asp:Button ID="Button4" runat="server" Text="Save" OnClick="Button4_Click" class="btn btn-success btn-sm"/>
                           </div>
-                              <div class="col=lg-4">
+                               <div class="col-lg-2">
+                              <asp:Button ID="Button9" runat="server" Text="Close" OnClick="Button9_Click" class="btn btn-warning btn-sm"/>
+                          </div>
+                              <div class="col-lg-6">
                                   <asp:Label ID="Label5" runat="server"></asp:Label>
                           </div>
                               </div>
+                              
                          
                       </div>
                       </div>
@@ -431,7 +439,7 @@
                    
                      
                   </asp:Panel>
-           <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender2" runat="server" PopupControlID="PanelBeh" TargetControlID="Button2" BackgroundCssClass="modalBackground" CancelControlID="Closebeh" ></ajaxToolkit:ModalPopupExtender>
+           <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender2" runat="server" PopupControlID="PanelBeh" TargetControlID="Button2" BackgroundCssClass="modalBackground" CancelControlID="Button9" ></ajaxToolkit:ModalPopupExtender>
       </div>
    </div>
   </div>

@@ -1728,6 +1728,7 @@
     <Content Include="Homepage.aspx" />
     <Content Include="Images\506-5067615_triangle-white-freetoedit-geometric-trigon-frame-triangle-logo.png" />
     <Content Include="Images\maxresdefault.jpg" />
+    <Content Include="MonthlyAttendanceReport.aspx" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -1760,6 +1761,8 @@
     <Content Include="AdminLogin.aspx" />
     <Content Include="WebForm17.aspx" />
     <Content Include="ReportsAdmin.aspx" />
+    <Content Include="Feedbacks.aspx" />
+    <Content Include="Employeedetails.aspx" />
     <Content Include="WebForm9.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -1783,6 +1786,13 @@
     </Compile>
     <Compile Include="Homepage.aspx.designer.cs">
       <DependentUpon>Homepage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MonthlyAttendanceReport.aspx.cs">
+      <DependentUpon>MonthlyAttendanceReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MonthlyAttendanceReport.aspx.designer.cs">
+      <DependentUpon>MonthlyAttendanceReport.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site1.Master.cs">
@@ -1918,6 +1928,20 @@
     </Compile>
     <Compile Include="ReportsAdmin.aspx.designer.cs">
       <DependentUpon>ReportsAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Feedbacks.aspx.cs">
+      <DependentUpon>Feedbacks.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Feedbacks.aspx.designer.cs">
+      <DependentUpon>Feedbacks.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Employeedetails.aspx.cs">
+      <DependentUpon>Employeedetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Employeedetails.aspx.designer.cs">
+      <DependentUpon>Employeedetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="WebForm9.aspx.cs">
       <DependentUpon>WebForm9.aspx</DependentUpon>

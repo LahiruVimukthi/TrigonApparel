@@ -22,6 +22,12 @@
     <script src="fontawesome-free-5.12.1-web/js/all.js"></script>
 
       <link href="CustomStyleSheet.css" rel="stylesheet" />
+     <script>
+        $(document).ready(function () {
+            $(".table").prepend($("<thead></thead>").append($(this).find("tr:first"))).dataTable();
+            
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -84,6 +90,12 @@
                                          <div class="card">
                                              <div class="card-header"> My Details</div>
                                              <div class="card-body">
+                                                 <div class="row">
+                                                     <div class="col-lg-4">
+                                                        <span>Account Status - </span>
+                                                            <asp:Label class="badge badge-pill badge-info" ID="Label14" runat="server" Text="Account status"></asp:Label>
+                                                     </div>
+                                                 </div>
                                                  <div class="row">
                                                      <div class="col-lg-10">
                                                          <div class="form-group">
@@ -188,8 +200,83 @@
 
                              </div>
                             <div id="Feedbacks" class="tab-pane fade in active">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card">
+                                                    <div class="card-header">Submit your Feedback</div>
+                                                    <div class="card-body">
+                                                       
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                               <div class="form-group">
+                                                                   <asp:Label ID="Label16" runat="server" Text="Select Type:"></asp:Label>
+                                                                   <asp:DropDownList ID="DropDownList1" runat="server" class="form-control form-control-sm">
+                                                                       <asp:ListItem Text="Compliment" Value="1" ></asp:ListItem>
+                                                                       <asp:ListItem Text="Complaint" Value="2" ></asp:ListItem>
+                                                                       <asp:ListItem Text="Suggestion" Value="3" ></asp:ListItem>
+                                                                   </asp:DropDownList>
+                                                               </div>
+                                                          </div>
+                                                            
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-12">
+                                                               <div class="form-group">
+                                                                   <asp:Label ID="Label17" runat="server" Text="Describe"></asp:Label>
+                                                                   <asp:TextBox ID="TextBoxDes" runat="server" TextMode="MultiLine" class="form-control form-control-sm"></asp:TextBox>
+                                                               </div>
+                                                          </div>
+                                                            
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-lg-4">
+                                                               <div class="form-group">
+                                                                   <asp:Button ID="Button1" runat="server" Text="Submit" class="btn btn-success btn-md" OnClick="Button1_Click" /> />
+                                                                   
+                                                               </div>
+                                                          </div>
+                                                        </div>
+                                                         </div>
+                                                     </div>
+                                            
+                                                 </div>
+                                           
+                                            </div>
+                                      <br />
+                                            <div class="row">
+                                                <div class="card">
+                                                    <div class="card-header"> Feedback Summary</div>
+                                                        <div class="card-body">
+                                                                <asp:GridView ID="GridView1" class="table" runat="server" BackColor="White" BorderColor="White" BorderStyle="Ridge" BorderWidth="2px" CellPadding="3" CellSpacing="1" GridLines="None" AutoGenerateColumns="False">
 
-                             </div>
+                                                    <Columns>
+                                                        <asp:BoundField DataField="FeedbackID" HeaderText="ID" />
+                                                        <asp:BoundField DataField="Feedback" HeaderText="Feedback" />
+                                                        <asp:BoundField DataField="Reply" HeaderText="Reply" />
+                                                    </Columns>
+
+                                                    <FooterStyle BackColor="#C6C3C6" ForeColor="Black" />
+                                                    <HeaderStyle BackColor="#4A3C8C" Font-Bold="True" ForeColor="#E7E7FF" />
+                                                    <PagerStyle BackColor="#C6C3C6" ForeColor="Black" HorizontalAlign="Right" />
+                                                    <RowStyle BackColor="#DEDFDE" ForeColor="Black" />
+                                                    <SelectedRowStyle BackColor="#9471DE" Font-Bold="True" ForeColor="White" />
+                                                    <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                                                    <SortedAscendingHeaderStyle BackColor="#594B9C" />
+                                                    <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                                                    <SortedDescendingHeaderStyle BackColor="#33276A" />
+                                                </asp:GridView>
+                                                        </div>
+                                                   
+                                                </div>
+                                            
+                                            </div>
+                                        </div>
+                                        
+                                      </div>
+                                 </div>
+                              
                             <div id="Reports" class="tab-pane fade in active">
 
                              </div>

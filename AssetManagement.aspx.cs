@@ -56,22 +56,11 @@ namespace TrigonApparel
         {
             try
             {
-
-                string filepath = "~/AssetImages/";
-                string filename = Path.GetFileName(FileUploadImg.PostedFile.FileName);
-                if (filename == "" || filename == null)
-                {
-                    filepath = global_filepath;
-
-                }
-                else
-                {
-                    FileUploadImg.SaveAs(Server.MapPath("AssetImages/" + filename));
-                    filepath = "~/AssetImages/" + filename;
-                }
+                
 
 
-                string squery = "INSERT INTO [dbo].[AssetDescription] (Add_Date,Status,Serial_Number,Current_Quantity,Category,Model,Description,Current_Status,Imgpath) VALUES(@Add_Date,@Status,@Serial_Number,@Current_Quantity,@Category,@Model,@Description,@Current_Status,@Imgpath)";
+
+                string squery = "INSERT INTO [dbo].[AssetDescription] (Add_Date,Status,Serial_Number,Current_Quantity,Category,Model,Description,Current_Status) VALUES(@Add_Date,@Status,@Serial_Number,@Current_Quantity,@Category,@Model,@Description,@Current_Status)";
                 SqlConnection con = new SqlConnection(strcon);
                 
                 if (con.State == ConnectionState.Closed)
@@ -88,7 +77,7 @@ namespace TrigonApparel
                 cmd.Parameters.AddWithValue("@Model", DropDownListMod3.SelectedItem.Text);
                 cmd.Parameters.AddWithValue("@Description", TextBoxDes.Text.Trim());
                 cmd.Parameters.AddWithValue("@Current_Status", "Available");
-                cmd.Parameters.AddWithValue("@Imgpath",filepath);
+               
                 cmd.ExecuteNonQuery();
                 con.Close();
                 //Inserting in to Models Table
@@ -139,12 +128,9 @@ namespace TrigonApparel
         {
             SqlConnection con = new SqlConnection(strcon);
             con.Open();
-            SqlCommand sc2 = new SqlCommand("INSERT INTO dbo.Asset_Models Model,AssetType_ID VALUES (@Model,@AssetType_ID)", con);
-            sc2.Parameters.AddWithValue("@Model", TextBoxAddMod.Text);
+            SqlCommand sc2 = new SqlCommand("INSERT INTO dbo.Asset_Models (Model,AssetType_ID) VALUES (@Model,@AssetType_ID)", con);
+            sc2.Parameters.AddWithValue("@Model", TextBoxAddMod.Text.Trim());
             sc2.Parameters.AddWithValue("@AssetType_ID", DropDownListSelCat3.SelectedItem.Value);
-
-
-
             sc2.ExecuteNonQuery();
             con.Close();
         }
@@ -516,6 +502,11 @@ namespace TrigonApparel
             com.Parameters.AddWithValue("@Description", TextBoxDes.Text);
             com.Parameters.AddWithValue("@Imgpath", filepath);
            
+        }
+
+        protected void GridViewSelAs_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridViewSelAs.PageIndex = e.NewPageIndex;
         }
     }
     

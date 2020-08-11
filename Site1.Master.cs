@@ -13,34 +13,9 @@ namespace TrigonApparel
         {
             try
             {
-                if (Session["role"].Equals(""))
-                {
-                    LinkButtonLogin.Visible = true;//Login
-                    LinkButton3.Visible = false;//Logout
-                    LinkButton7.Visible = false;//helloUser
-                    LinkButtonEmployees.Visible = false;
-                    LinkButtonAttendance.Visible = false;
-                    LinkButtonPerformance.Visible = false;
-                    LinkButtonFeedback.Visible = false;
-                    LinkButtonAssets.Visible = false;
-                    LinkButtonAnnouncements.Visible = false;
-                    LinkButtonreports.Visible = false;
-
-                }
-                else if (Session["role"].Equals("Employee"))
-                {
-                    LinkButtonLogin.Visible = false;//Login
-                    LinkButton3.Visible = true;//Logout
-                    LinkButton7.Text ="Hello"+" "+Session["Username"].ToString() ;//helloUser
-                    LinkButtonEmployees.Visible = false;
-                    LinkButtonAttendance.Visible = false;
-                    LinkButtonPerformance.Visible = false;
-                    LinkButtonFeedback.Visible = false;
-                    LinkButtonAssets.Visible = false;
-                    LinkButtonAnnouncements.Visible = false;
-                    LinkButtonreports.Visible = false;
-                }
-                else if (Session["role"].Equals("Admin"))
+                
+                
+                if (Session["role"].Equals("Admin"))
                 {
                     LinkButtonLogin.Visible = false;//Login
                     LinkButton3.Visible = true;//Logout

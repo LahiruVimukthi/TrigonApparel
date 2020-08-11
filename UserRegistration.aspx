@@ -121,9 +121,9 @@
                         
                         <div class="row">
                             <div class="form-group ">
-                            <center>
+                           
                                <asp:Button runat="server" Text="Submit" class="btn-primary" OnClick="Unnamed1_Click"></asp:Button>
-                            </center> 
+                            
                                 </div>
                         </div>
                     
@@ -141,10 +141,15 @@
             <asp:GridView class="table table-striped table-bordered" ID="GridViewAddEmployees" runat="server" AutoGenerateColumns="False" DataKeyNames="Employee_ID" DataSourceID="SqlDataSource3" CellPadding="4" Font-Size="Small" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
+                    <asp:TemplateField HeaderText="Employee ID">
+                        <ItemTemplate>
+                            <asp:LinkButton ID="LinkButton8" runat="server" Text='<%# Eval("Employee_ID") %>' OnClick="LinkButton8_Click" CausesValidation="false"></asp:LinkButton>
+                        </ItemTemplate>
+                    </asp:TemplateField>
                     <asp:BoundField DataField="F_Name" HeaderText="First Name" SortExpression="F_Name" />
                     <asp:BoundField DataField="Phn_Number" HeaderText="Phone Number" SortExpression="Phn_Number" />
                     <asp:BoundField DataField="NIC_Number" HeaderText="NIC Number" SortExpression="NIC_Number" />
-                    <asp:BoundField DataField="Employee_ID" HeaderText="Employee ID" InsertVisible="False" ReadOnly="True" SortExpression="Employee_ID" />
+                   
                     <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" />
                     <asp:BoundField DataField="Supervisor" HeaderText="Supervisor" SortExpression="Supervisor" />
                     <asp:BoundField DataField="Department_Name" HeaderText="Department Name" SortExpression="Department_Name" />
@@ -165,151 +170,7 @@
     </div>
 
      <!--Create Profile-->
-        <div>       
-        <asp:Panel ID="PanelCreateProfile" runat="server" Height="540px" ScrollBars="Auto">
-            <div class="card w-100 border-success overflow-hidden">
-                <div class="card-header">
-                    Create Employee Profile
-                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="CloseProfile">
-                    <span aria-hidden="true">&times;</span>
-                </button>  
-                </div>              
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                
-                                <label for="EmployeeID">Employee ID:</label>
-                                <asp:TextBox ID="TextBoxEmployeeID2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                                <asp:Button ID="ButtonLoadP" runat="server" Text="Load" OnClick="ButtonLoadP_Click" />
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="FirsttName">First Name:</label>
-                                <asp:TextBox ID="TextBoxFName2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="LastName">Last Name:</label>
-                                <asp:TextBox ID="TextBoxLastName2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                            <div class="form-group">
-                                <label for="FullName">Full Name:</label>
-                                <asp:TextBox ID="TextBoxFullName" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="Email">Email:</label>
-                                <asp:TextBox ID="TextBoxEmail" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                            </div>
-                            </div>
-                             <div class="col-sm-4">
-                                <div class="form-group">
-                                <label for="PhoneNumber">Phone Number:</label>
-                                <asp:TextBox ID="TextBoxPhnNumbr2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                            </div>
-                            </div>
-                            <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="NICNumber2">NIC Number:</label>
-                                <asp:TextBox ID="TextBoxNIC2" runat="server" CssClass="form-control form-control-sm"></asp:TextBox>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="row">
-                                 <div class="col-sm-4">
-                                    <div class="form-group">
-                                    <label for="JobTitle">Department:</label>
-                                    <asp:DropDownList ID="DropDownListJobs2" runat="server" OnSelectedIndexChanged="DropDownListJobs2_SelectedIndexChanged" DataSourceID="SqlDataSource2" DataTextField="Dep_Name" DataValueField="Dep_Name" >                              
-                                    </asp:DropDownList>                             
-                                        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT [Dep_Name] FROM [Department]"></asp:SqlDataSource>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                    <label for="Supervisor">Supervisor:</label>
-                                    <asp:DropDownList ID="DropDownListSupervisor" runat="server" OnSelectedIndexChanged="DropDownListSupervisor_SelectedIndexChanged">
-                                      <asp:ListItem>Mr. Karunarathne</asp:ListItem>
-                                      <asp:ListItem>Mr. Rathnayake</asp:ListItem>
-                                      <asp:ListItem>Mrs. Gunathilake</asp:ListItem>
-                                  </asp:DropDownList>
-                                    </div>
-                                </div>
-                                <div class="col-sm-4">                             
-                                <div class="form-group">
-                                <label for="DoJ">Date of Join:</label>
-                                    <asp:TextBox runat="server" ID="TextboxDoJ"  Text="11/01/2006" />
-                                    
-                                    <ajaxtoolkit:calendarextender runat="server" ID="Calendarextender1" PopupButtonID="TextboxDoJ" CssClass="AjaxCalendar" TargetControlID="TextboxDoJ" Format="dd,MM,yyyy" />
-                                </div>
-                                </div>
-                            </div>                                                       
-                            <div class="row">
-                                <div class="col-sm-4">
-                                <div class="form-group">
-                                <label for="DoB">Date of Birth:</label>
-                                    <asp:TextBox runat="server" ID="TextboxDoB"  Text="11/01/2006" />
-                                    
-                                    <ajaxtoolkit:calendarextender runat="server" ID="calExtender2" PopupButtonID="TextboxDoB" CssClass="AjaxCalendar" TargetControlID="TextboxDoB" Format="dd,MM,yyyy" />
-                                </div>
-                                </div>
-                                 <div class="col-sm-4">
-                                    <div class="form-group">
-                                    <label for="MaritalStatus">Marital status:</label>
-                                    <asp:DropDownList ID="DropDownListMaritalStatus" runat="server" OnSelectedIndexChanged="DropDownListMaritalStatus_SelectedIndexChanged">
-                                    <asp:ListItem>Married</asp:ListItem>
-                                    <asp:ListItem>Unmarried</asp:ListItem>
-                                    </asp:DropDownList>
-                                    </div>
-                                </div>
-                            </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group ">
-                                <label for="Address">Address:</label>
-                                <asp:TextBox ID="TextBox6" runat="server" CssClass="form-control form-control-sm" TextMode="SingleLine"></asp:TextBox>
-                                <br />
-                                </div>
-                            </div>
-                        </div>
-                              <div class="row">
-                                  <div class="col-sm-10">
-                                      <asp:TextBox ID="TextBox7" runat="server" CssClass="form-control form-control-sm" TextMode="SingleLine"></asp:TextBox>
-                                  </div>
-                              </div>
-                                <br />
-
-                                <div class="row">
-                                  <div class="col-sm-10">
-                                      <asp:TextBox ID="TextBox8" runat="server" CssClass="form-control form-control-sm" TextMode="SingleLine"></asp:TextBox>
-                                  </div>
-                                </div>
-                               <br />                                                
-                        <br />
-                     <div class="row">
-                            <center>
-                               <asp:Button runat="server" Text="Submit" class="btn-primary" OnClick="Unnamed2_Click"></asp:Button>
-                            </center>                                                
-                    </div>
-                </div>
-                   <!-- </div>-->
-                <!--</div>-->
-          
-            
-            
-       <ajaxToolkit:ModalPopupExtender ID="ModalPopupExtender2" runat="server" PopupControlID="PanelCreateProfile" TargetControlID="ButtonCreateProfile" CancelControlID="CloseProfile" ></ajaxToolkit:ModalPopupExtender>
-            </div>
-         </asp:Panel>
-        </div>
+        
    
     
       

@@ -17,32 +17,30 @@
                         <div class="tab-content" style="font-family: Arial, Helvetica, sans-serif; color: #000000">
 
                             <div id="Attendance" class="tab-pane fade in active">
+                                <br />
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
                                         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                                             <ContentTemplate>
                                                   <div class="row">
-                                            <div class="col-lg-06">
-                                                <asp:Panel ID="Panel1" runat="server" BorderStyle="Inset">
-                                                    <div class="row">
-                                                        <div class="col-lg-6">
-                                                              <asp:Label ID="Label1" runat="server" Text="Daily Attendance"></asp:Label>
-                                                        </div>
-                                                      
-
-                                                    </div>
+                                                    <div class="col-lg-6">
+                                                          <div class="card">
+                                                              <div class="card-header">Daily Attendance</div>
+                                                              <div class="card-body">
+                                                                  
                                                      <div class="row">
                                                          <div class="col-lg-6">
                                                              <div class="form-group">
                                                                   <asp:Label ID="Label2" runat="server" Text="Select Department"></asp:Label>
-                                                                 <asp:DropDownList ID="DropDownListDepDaily" runat="server"></asp:DropDownList>
+                                                                  <asp:DropDownList ID="DropDownListDepDaily" runat="server" DataSourceID="SqlDataSource1" DataTextField="Dep_Name" DataValueField="Dep_ID" class="form-control form-control-sm"></asp:DropDownList>
+         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT * FROM [Department]"></asp:SqlDataSource>
                                                              </div>
                                                          </div>
                                                         <div class="col-lg-6">
                                                              <div class="form-group">
-                                                                  <asp:Label ID="Label3" runat="server" Text="Select Date"></asp:Label>
-                                                                 <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                                                                  <asp:Label ID="Label3" runat="server" Text="Select Date" ></asp:Label>
+                                                                 <asp:TextBox ID="TextBox1" runat="server" class="form-control form-control-sm" TextMode="Date"></asp:TextBox>
                                                              </div>
                                                          </div>
                                                          <div class="row">
@@ -55,8 +53,50 @@
                                                          </div>
 
                                                     </div>
-                                                </asp:Panel>
-                                            </div>
+                                             
+                                          
+                                                                  </div>
+                                                              </div>
+                                                            </div>
+                                                      <div class="col-lg-6">
+                                                          <div class="card">
+                                                              <div class="card-header">Monthly Attendance</div>
+                                                              <div class="card-body">
+                                                                 
+                                                     <div class="row">
+                                                         <div class="col-lg-4">
+                                                             <div class="form-group">
+                                                                  <asp:Label ID="Label5" runat="server" Text="Select Department"></asp:Label>
+                                                                  <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="SqlDataSource1" DataTextField="Dep_Name" DataValueField="Dep_ID" class="form-control form-control-sm"></asp:DropDownList>
+         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:TRIGONdbConnectionString %>" SelectCommand="SELECT * FROM [Department]"></asp:SqlDataSource>
+                                                                 <asp:CheckBox ID="CheckBox1" runat="server" Text="Select All" />
+                                                             </div>
+                                                         </div>
+                                                        <div class="col-lg-4">
+                                                             <div class="form-group">
+                                                                  <asp:Label ID="Label6" runat="server" Text="From Date" ></asp:Label>
+                                                                 <asp:TextBox ID="TextBoxFdate" runat="server" class="form-control form-control-sm" TextMode="Date"></asp:TextBox>
+                                                             </div>
+                                                         </div>
+                                                          <div class="col-lg-4">
+                                                             <div class="form-group">
+                                                                  <asp:Label ID="Label4" runat="server" Text="To Date" ></asp:Label>
+                                                                 <asp:TextBox ID="TextBoxTdate" runat="server" class="form-control form-control-sm" TextMode="Date"></asp:TextBox>
+                                                             </div>
+                                                         </div>
+                                                         <div class="row">
+                                                             <center>
+                                                                   <div class="col-lg-4">
+                                                                    <asp:Button ID="Button1" runat="server" Text="Generate Daily Report" OnClick="Button1_Click"></asp:Button>
+                                                             </div>
+                                                             </center>
+                                                           
+                                                         </div>
+
+                                                    </div>
+                                                              </div>
+                                                          </div>
+                                                      </div>
                                         </div>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
@@ -65,7 +105,9 @@
                                 </div>
                              </div>
                             <div id="Performance" class="tab-pane fade in active">
-
+                                <div class="card-body">
+                                    <iframe width="1140" height="541.25" src="https://app.powerbi.com/reportEmbed?reportId=6db3e76b-f235-4ad7-b700-6eadefe49eaa&autoAuth=true&ctid=aa232db2-7a78-4414-a529-33db9124cba7&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLXNvdXRoLWVhc3QtYXNpYS1yZWRpcmVjdC5hbmFseXNpcy53aW5kb3dzLm5ldC8ifQ%3D%3D" frameborder="0" allowFullScreen="true"></iframe>
+                                </div>
                              </div>
                          
                             <div id="Assets" class="tab-pane fade in active">
@@ -75,4 +117,5 @@
                         </div>
                     </div>
                 </div>
+    
 </asp:Content>
